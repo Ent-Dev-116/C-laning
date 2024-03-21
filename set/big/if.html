@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <link rel="stylesheet" href="bigi.css">
+    <link rel="stylesheet" href="../code.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <!--()は取り上げるネタ
+        []はヘッダファイルの名前
+    -->
+    <script src="../click_copy.js"></script>
+
+    <h1>if(ついでにelse)</h1>
+    <h3>ifの入力の仕方</h3>
+    <p>ifは<code><span class="brown">if</span>(（　①　）){　②　};</code>のような入力法になります。</p>
+    <h5>①</h5>
+    <p>①には条件式が入ります。条件式とは、if文の{}に入るための条件です。</p>
+    <h5>②</h5>
+    <p>②の中には、条件式が成功したときに実行するプログラムを書きます。</p>
+    <h3>else</h3>
+    <p>elseとは、条件式に失敗したプログラムを実行するものです。<br>
+        <code><span class="brown">if</span>(){}<span class="brown">else</span>{　③　};</code>と記述し、③には実行するプログラムを書きます。
+    </p>
+    <h3>条件式一覧</h3>
+    <p>条件式を一覧にして表を載せました。</p>
+    <table>
+        <tr>
+            <th>入力</th>
+            <th>実例</th>
+            <th>成功の条件</th>
+        </tr>
+        <tr>
+            <td>&gt;</td>
+            <td>a &gt; b</td>
+            <td>[a]が[b]<b>より大きければ</b>成功</td>
+        </tr>
+        <tr>
+            <td>&lt;</td>
+            <td>a &lt; b</td>
+            <td>[a]が[b]<b>より小さければ</b>成功</td>
+        </tr>
+        <tr>
+            <td>==</td>
+            <td>a == b</td>
+            <td>[a]と[b]が<b>等しければ</b>成功</td>
+        </tr>
+        <tr>
+            <td>!=</td>
+            <td>a != b</td>
+            <td>[a]と[b]が<b>等しくなければ</b>成功</td>
+        </tr>
+        <tr>
+            <td>&gt;=</td>
+            <td>a &gt;= b</td>
+            <td>[a]が[b]<b>より大きい、もしくは等しければ</b>成功</td>
+        </tr>
+        <tr>
+            <td>&lt;=</td>
+            <td>a &lt;= b</td>
+            <td>[a]が[b]<b>より小さい、もしくは等しければ</b>成功</td>
+        </tr>
+        <tr>
+            <td>||</td>
+            <td>a == b || a == c</td>
+            <td>「または」という意味の記号。この場合は「[a]が[b]と同じ」<b>または</b>「[a]が[c]と同じ」なら成功。</td>
+        </tr>
+        <tr>
+            <td>&&</td>
+            <td>a &gt; b && a &lt; c</td>
+            <td>「かつ」という意味の記号。この場合は「[a]が[b]より大きい」<b>かつ</b>「[a]が[c]より小さい」なら成功。</td>
+        </tr>
+        <tr>
+            <td>!</td>
+            <td>!(a > b)</td>
+            <td>「ではない」という意味の記号。この場合は「[a]が[b]より大きい」<b>のではない</b>なら成功。</td>
+        </tr>
+    </table>
+
+    <h1>今までの説明を分かりやすくするサンプルコード</h1>
+    <div class="code_box">
+        <label>SAMPLE CODE [if_sanp.c]</label>
+        <button type="button" onclick="copy1()">copy</button>
+        <pre><code id="code1"><span class="purple">#include</span><span class="red">&lt;stdio.h&gt;</span>
+
+<span class="bule">/**********************************************
+    if...else 説明用サンプルコード          
+    作成者:換気扇  
+    推奨ファイル名:if_sanp.c          
+**********************************************/</span>
+
+<span class="green">int</span> main(<span class="green">void</span>){
+        
+        <span class="bule">//変数宣言</span>
+        <span class="green">int</span> num;
+
+        <span class="bule">//値を代入</span>
+        printf(<span class="red">"num<span class="purple">\n</span>&gt;"</span>);
+        scanf(<span class="red">"<span class="purple">%d</span>"</span>,&num);
+
+        <span class="bule">//if文の性質証明</span>
+        <span class="brown">if</span>(<span class="red">1</span>){
+            printf(<span class="red">"<span class="purple">\n</span>ifは比較式が成功するだけでなく、()の中身が「1」であれば通ります。<span class="purple">\n</span>"</span>);
+        }
+
+        <span class="bule">//if文の比較式</span>
+        <span class="brown">if</span>(num&gt;<span class="red">10</span>){
+            printf(<span class="red">"<span class="purple">\n</span>入力した数値は10より大きいです。<span class="purple">\n</span>"</span>);
+        }
+
+        <span class="bule">//if文とelse文の使用</span>
+        <span class="brown">if</span>(num%<span class="red">2</span>==<span class="red">1</span>){
+            printf(<span class="red">"入力した数値は奇数です。<span class="purple">\n</span>"</span>);
+        } <span class="brown">else</span> {
+            printf(<span class="red">"入力した数値は偶数です。<span class="purple">\n</span>"</span>);
+        }
+
+        <span class="bule">//if文の複合比較式</span>
+        <span class="brown">if</span>(num&gt;<span class="red">10</span>&&num&lt;<span class="red">20</span>){
+            printf(<span class="red">"<span class="purple">\n</span>入力した数値は10より大きいく、20より小さいです。<span class="purple">\n</span>"</span>);
+        }
+
+<!--ここにコードが入ってくる-->
+        <span class="brown">return <span class="red">0</span></span>;
+}
+</code></pre>
+    </div>
+    <h3>サンプルコード徹底解説</h3>
+    <p>ここでは、サンプルコードで果たして何をしていたのかを表します。</p>
+    <h5>1,<code><span class="purple">#include</span></code> ... <code>(<span class="green">void</span>){</code>～定型文～
+    </h5>
+    <p>ザ・定型文です。<br>今のうちは、「始めの合図」だと思ってください。</p>
+    <h5>2,<code><span class="green">int</span> num;</code>～変数宣言～</h5>
+    <p>変数宣言です。一応変数の説明をするならば、入力した数値を保存する変数です。</p>
+    <h5>3,<code>printf(<span class="red">"num</span></code> ...
+        <code><span class="red"><span class="purple">%d</span>"</span>,&num);</span></code>～数値入力～</h5>
+    <p>if文で比較するための数値です。この値で今後のif文で分岐が変わります。</p>
+    <h5>4,<code><span class="brown">if</span>(<span class="red">1</span>){</code> ... <code>}</code>～if文の性質～</h5>
+    <p>if文はコメントの通り、比較式だけでなく()の中身が「1」であれば通ります。<br>
+        この技術はifだけでなく、<b>今後のwhileの方でよく使うので忘れない方が良いです</b>。</p>
+    <h5>5,<code><span class="brown">if</span>(num&gt;<span class="red">10</span>){</code> ... <code>}</code>～if文の比較式のテスト～</h5>
+    <p>この比較式であれば入力した値が10より大きければ中身に入ります。</p>
+    <h5>6,<code><span class="brown">if</span>(num%<span class="red">2</span>==<span class="red">1</span>){</code> ... <code>}</code>～if文の比較式のテスト～</h5>
+    <p>if...else文のテスト。もし「入力した数値を2で割った余りが1(奇数)」ならif文の中に入り、でなければelse文の中に入る。</p>
+    <h5>7,<code><span class="brown">if</span>(num&gt;<span class="red">10</span>&&num&lt;<span class="red">20</span>){</code> ... <code>}</code>～if文の複合した比較式のテスト～</h5>
+    <p>この比較式であれば、「numが10より大きく、かつ、20より小さい」場合にif文の中に入る。</p>
+    <h5>8,<code><span class="brown">retu</span></code> ... <code>}</code>～定型文～</h5>
+    <p>「1,」の内容が始めの合図だとすると、こっちは「終わりの合図」です。<br>
+        「1,」と「8,」が何なのかは追々分かります。</p>
+    <h1>オマケ[ifでよくあるエラー三選]</h1>
+    <h3>1.比較式と代入</h3>
+    <p>等しいの場合に、<b>==</b>でなく<b>=</b>の記述をしてしまうと発生します。これは何も発生しなくなります。<br>
+    エラーではなく、バグとされてしまうので、発見も難しいです。</p>
+    <h3>2.比較式の間違い</h3>
+    <p>長文の分岐を書いている時に、どの分岐でどこへ入るのかわかりづらくなる時があります。<br>
+    それを避けるために<b>コメント文はちゃんと残しておきましょう</b>。</p>
+    <h3>3.中かっこつけ忘れ</h3>
+    <p>手癖でプログラムを書いている時にあるミスです。<br>
+    中かっこを閉じ忘れただけでめちゃくちゃ分かりづらいエラーをはいてくるので、避けた方が良いです。</p>
+    
+    <br>
+    <h1>参考資料</h1>
+    <ul>
+        <li>JavaDrive||<a href="https://9cguide.appspot.com/07-02.html" target="_blank">比較のための演算子</a></li>
+    </ul>
+</body>
+
+</html>

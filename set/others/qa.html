@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="others.css">
+    <link rel="stylesheet" href="../code.css">
+    <link rel="stylesheet" href="./qa.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <h1>コメントコーナー</h1>
+    <div class="input">
+        <form
+            action="https://script.google.com/macros/s/AKfycbxwraGYXiSFdF5xulTGCvfTy8E0Ljf57QKEnA31bGwYpNEDphCrR7deh1XyPDptDj1UKw/exec"
+            method="POST">
+            <input type="text" name="name" placeholder="ニックネーム(最大12文字)" maxLength="12" style="width: 80%;" required><br>
+            <textarea name="comment" wrap="soft" style="height: 120px;width: 80%;" placeholder="質問・要望等何でも良いです。送信後の「Google Drive アクセス権が必要です」は、無視して大丈夫です。名前と質問は、このサイトに公開されるため、気をつけてください。"></textarea><br><br>
+            <input id="playButton" class="btn" type="submit" value="送信">
+        </form>
+    </div>
+
+    
+    <div class="spinner-box" id="Load">
+        <div class="pulse-container">  
+          <div class="pulse-bubble pulse-bubble-1"></div>
+          <div class="pulse-bubble pulse-bubble-2"></div>
+          <div class="pulse-bubble pulse-bubble-3"></div>
+        </div>
+      </div>
+    
+
+    <div id="qas" class="wrap"></div>
+    <script src="./qa.js"></script>
+</body>
+
+</html>

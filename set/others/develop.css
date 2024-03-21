@@ -1,0 +1,24 @@
+.dev{
+    background-color: rgba(255,255,255,0.5);
+    width: 96vw;
+    height: 59vh;
+    overflow: scroll;
+    border: 2px black solid;
+}
+
+.date{
+    margin: 0 3px;
+    padding-right: 7px;
+    border-right: 2px black solid;
+}
+
+.box {
+    background-color: rgba(255, 255, 255, 0.75);
+    color: black;
+    margin: 7px 5px;
+    width: 98%;
+}
+
+.dev::-webkit-scrollbar {
+    display: none;
+}

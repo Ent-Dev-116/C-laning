@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <link rel="stylesheet" href="bigi.css"><link rel="stylesheet" href="../code.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <!--()は取り上げるネタ
+        []はヘッダファイルの名前
+    -->
+    <script src="../click_copy.js"></script>
+
+    <h1>()</h1>
+    <h3>()の入力の仕方</h3>
+    <p>()は<code>()(（　①　）);</code>のような入力法になります。</p>
+    <h5>①</h5>
+
+    <!--使う場合あれば、テーブルの書式-->
+    <table>
+        <tr>
+            <th>重要さ</th>
+            <th>入力</th>
+            <th>何が表示できるか</th>
+            <th>ひと言</th>
+        </tr><tr>
+            <td>★★★</td>
+            <td>\n<br>(\の表示は<br>「右下がりスラッシュ」になります。)</td>
+            <td>改行</td>
+            <td>マジでよく使うよ。使わないはずがない。</td>
+        </tr><tr>
+            <td>★☆☆</td>
+            <td>\a</td>
+            <td>警報音</td>
+            <td>使わないし、使えない。</td>
+        </tr><tr>
+            <td>★☆☆</td>
+            <td>\f</td>
+            <td>改ページ</td>
+            <td>なんだこいつ。「5・7・5」書く以外の使い道分からん。</td>
+        </tr><tr>
+            <td>★★☆</td>
+            <td>\b</td>
+            <td>バックスペース</td>
+            <td>使えたら良い。文字を書き直す時に使うよ。</td>
+        </tr><tr>
+            <td>★★★</td>
+            <td>\r</td>
+            <td>復帰</td>
+            <td>要するに「行の先頭からまた書き始める」ってこと。カウントダウンに使う。</td>
+        </tr><tr>
+            <td>★★☆</td>
+            <td>\t</td>
+            <td>水平タブ</td>
+            <td>tabキーを押したときのスペース。…たまに使う。</td>
+        </tr><tr>
+            <td>★☆☆</td>
+            <td>\v</td>
+            <td>垂直タブ</td>
+            <td>\fとガチで一緒。存在意義無し。</td>
+        </tr><tr>
+            <td>★★☆</td>
+            <td>\\ \? \" \'</td>
+            <td>文字として入力</td>
+            <td>特殊文字を文字として出したいときに使う。</td>
+        </tr><tr>
+            <td>★☆☆</td>
+            <td>\0</td>
+            <td>NULL</td>
+            <td>空っぽの事。printfでは使わないよ。</td>
+        </tr>
+    </table>
+    
+    <h1>今までの説明を分かりやすくするサンプルコード</h1>
+    <div class="code_box">
+        <label>SAMPLE CODE []</label>
+        <button type="button" onclick="copy1()">copy</button>
+<pre><code id="code1"><span class="purple">#include</span><span class="red">&lt;stdio.h&gt;</span>
+
+<span class="bule">/**********************************************
+    () 説明用サンプルコード            
+    作成者:換気扇  
+    推奨ファイル名:          
+**********************************************/</span>
+
+<span class="green">int</span> main(<span class="green">void</span>){
+<!--ここにコードが入ってくる-->
+        <span class="brown">return <span class="red">0</span></span>;
+}
+</code></pre>
+    </div>
+    <h3>サンプルコード徹底解説</h3>
+    <p>ここでは、サンプルコードで果たして何をしていたのかを表します。</p>
+    <h5>1,<code><span class="purple">#include</span></code> ... <code>(<span class="green">void</span>){</code>～定型文～</h5>
+    <p>ザ・定型文です。<br>今のうちは、「始めの合図」だと思ってください。</p>
+    <h5>,<code><span class="brown">retu</span></code> ... <code>}</code>～定型文～</h5>
+    <p>「1,」の内容が始めの合図だとすると、こっちは「終わりの合図」です。<br>
+    「1,」と「5,」が何なのかは追々分かります。</p>
+    <h1>オマケ[()でよくあるエラー三選]</h1>
+    <h3>1.</h3>
+    <h3>2.</h3>
+    <h3>3.</h3>
+    <p>エスケープシーケンスを違う文字で表示させようとすると起きます。<br>多分あんまりこのミスはないと思います。</p>
+    <h1>オマケ[今回の配布ヘッダファイル]</h1>
+    <div class="code_box">
+    <label>SAMPLE CODE [.h]</label>
+    <button type="button" onclick="copyTo()">copy</button>
+<pre><code id="code"><span class="purple">
+<!--ここにコードが入ってくる-->
+</code>
+</pre>
+    </div>
+    <h5>使い方</h5>
+    
+    <br>
+    <h1>参考資料</h1>
+    <ul>
+        <li>||<a href="" target="_blank"></a></li>
+        <li>||<a href="" target="_blank"></a></li>
+    </ul>
+</body>
+</html>

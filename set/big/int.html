@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <link rel="stylesheet" href="bigi.css">
+    <link rel="stylesheet" href="../code.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+    <!--()は取り上げるネタ
+        []はヘッダファイルの名前
+    -->
+    <script src="../click_copy.js"></script>
+
+    <h1>数値型変数（int,float,long）</h1>
+    <h3>大まかな変数分類</h3>
+    <p>変数はいくつか型があります。<br>型というのはいわば数値の形のことです。</p>
+    <p>覚えなくてはならないのが、「整数値のint型」「小数値のfloat型」「一文字のchar型」です。<br>あとは下の表へ。</p>
+    <table>
+        <tr>
+            <th>入力</th>
+            <th>何が代入できるか</th>
+            <th>変数の範囲</th>
+        </tr>
+        <tr>
+            <td>int</td>
+            <td>整数</td>
+            <td>-2147483648 ～ 2147483647</td>
+        </tr>
+        <tr>
+            <td>float</td>
+            <td>小数表示</td>
+            <td>3.4E-38 ～ 3.4E+38</td>
+        </tr>
+        <tr>
+            <td>char</td>
+            <td>アルファベット一文字</td>
+            <td>-128 ～ 127</td>
+        </tr>
+        <tr>
+            <td>short int</td>
+            <td>小さい整数。容量が軽い</td>
+            <td>-32768 ～ 32767</td>
+        </tr>
+        <tr>
+            <td>long int</td>
+            <td>大きい整数。容量が重い</td>
+            <td>-2147483648 ～ 2147483647</td>
+        </tr>
+        <tr>
+            <td>double</td>
+            <td>大きい小数。</td>
+            <td>1.7E-308 ～ 1.7E+308</td>
+        </tr>
+        <tr>
+            <td>unsigned int</td>
+            <td>負数を含まない整数。長くなる。</td>
+            <td>0 ～ 4294967295</td>
+        </tr>
+    </table>
+    <h3>変数にくっつく便利な奴ら</h3>
+    <h5>long</h5>
+    <p>長くしてくれる。主に、intの時に使う。ただし、「%d」等と書くときに「%ld」と入れなくてはならない。</p>
+    <h5>unsigned</h5>
+    <p>無駄な値を無くしてくれる。int等の数字型であれば、負数をなくして、その分長くする。<br>long unsigned intと宣言すれば、正の数では取りえる範囲が最長になる。</p>
+    <h3>変数宣言の方法</h3>
+    <pre><code><span class="green">[変数型名]</span> [変数名];</code></pre>
+
+    <h1>今までの説明を分かりやすくするサンプルコード</h1>
+    <div class="code_box">
+        <label>SAMPLE CODE [int.c]</label>
+        <button type="button" onclick="copy1()">copy</button>
+        <pre><code id="code1"><span class="purple">#include</span><span class="red">&lt;stdio.h&gt;</span>
+
+<span class="bule">/**********************************************
+    変数 説明用サンプルコード            
+    作成者:換気扇  
+    推奨ファイル名:int_sanp.c        
+**********************************************/</span>
+
+<span class="green">int</span> main(<span class="green">void</span>){
+        <span class="bule">//変数宣言</span>
+        <span class="green">int</span> a=<span class="red">1</span>;
+
+        <span class="bule">//代入している値は[long int]の最大値</span>
+        <span class="green">long int</span> a=<span class="red">9223372036854775807</span>;
+        
+        <span class="green">float</span> b=<span class="red">0.1</span>;
+        <span class="brown">return <span class="red">0</span></span>;
+}
+</code></pre>
+    </div>
+    <h3>サンプルコード徹底解説</h3>
+    <p>ここでは、サンプルコードで果たして何をしていたのかを表します。</p>
+    <h5>1,<code><span class="purple">#include</span></code> ... <code>(<span class="green">void</span>){</code>～定型文～
+    </h5>
+    <p>ザ・定型文です。<br>今のうちは、「始めの合図」だと思ってください。</p>
+    <h5>2,<code><span class="green">int</span> a;</code> ... <code><span class="green">float</span> b=0.1;</code>～変数宣言～
+    </h5>
+    <p>変数宣言です。今まで[printf]などで見せてきましたので、何となく理解していると思います。<br>
+        少し詳しく説明すると、この変数宣言をすることで、数字を補完するいわば「箱」を作っているイメージです。</p>
+    <h5>3,<code><span class="brown">retu</span></code> ... <code>}</code>～定型文～</h5>
+    <p>「1,」の内容が始めの合図だとすると、こっちは「終わりの合図」です。<br>
+        「1,」と「3,」が何なのかは追々分かります。</p>
+    <h1>オマケ[()でよくあるエラー三選]</h1>
+    <h3>1.変数名が被る</h3>
+    <p>時々あるやつです。名前は"a"とか"b"じゃなくてちゃんと意味を込めましょう。</p>
+    <h6>後で見たときとかも楽になるよ。</h6>
+    <h3>2.予約語を使う</h3>
+    <p>あまりないです。というか変数宣言でミスはしません。ほぼ。</p>
+    <h3>3.変数型と違うものを使う</h3>
+    <p>「変数型を勘違いしていて、[float]に文字を入れてしまった」とかです。</p>
+    <h6>お察しの通り、ミスはないです。がちで。</h6>
+    <h1>オマケ[最大値が知りたい]</h1>
+    <h3>最大値を知る方法</h3>
+    <p>一応表に書きました。が、わかりづらく無いですか？<br>
+        どうせなら実行すれば、勝手に教えてくれるようにしたいですよね？<br>
+    というわけで、下のコードを作りました。</p>
+    <div class="code_box">
+        <label>SAMPLE CODE [max_min.c]</label>
+        <button type="button" onclick="copyTo()">copy</button>
+        <pre><code id="code"><span class="purple">#include</span><span class="red">&lt;stdio.h&gt;</span>
+<span class="purple">#include</span><span class="red">&lt;limits.h&gt;</span>
+<span class="purple">#include</span><span class="red">&lt;float.h&gt;</span>
+    <!--ここにコードが入ってくる-->
+<span class="green">int</span> main(){
+
+        printf(<span class="red">"int型<span class="purple">\n%d</span> ~ <span class="purple">%d\n\n</span>"</span>,<span class="red">INT_MIN</span>,<span class="red">INT_MAX</span>);
+        printf(<span class="red">"char型<span class="purple">\n%d</span> ~ <span class="purple">%d\n\n</span>"</span>,<span class="red">CHAR_MIN</span>,<span class="red">CHAR_MAX</span>);
+        printf(<span class="red">"float型<span class="purple">\n%e</span> ~ <span class="purple">%e\n\n</span>"</span>,-<span class="red">FLT_MAX</span>,<span class="red">FLT_MAX</span>);
+        printf(<span class="red">"double型<span class="purple">\n%e</span> ~ <span class="purple">%e\n\n</span>"</span>,-<span class="red">DBL_MAX</span>,<span class="red">DBL_MAX</span>);
+
+        printf(<span class="red">"long int型<span class="purple">\n%ld</span> ~ <span class="purple">%ld\n\n</span>"</span>,<span class="red">LONG_MIN</span>,<span class="red">LONG_MAX</span>);
+        printf(<span class="red">"unsigned int型<span class="purple">\n</span>0 ~ <span class="purple">%u\n\n</span>"</span>,<span class="red">UINT_MAX</span>);
+        printf(<span class="red">"short int型<span class="purple">\n%d</span> ~ <span class="purple">%d\n\n</span>"</span>,<span class="red">SHRT_MIN</span>,<span class="red">SHRT_MAX</span>);
+        
+        <span class="brown">return <span class="red">0</span></span>;
+}
+    </code>
+    </pre>
+    </div>
+    <p>このコードを実行すれば、いつでも最大最小値を知れます。</p>
+    <br>
+    <h1>参考資料</h1>
+    <ul>
+        <li>だえうホームページ||<a href="https://daeudaeu.com/c-limit/#google_vignette" target="_blank">【C言語】型の最大値と最小値を調べる（limits.h・float.h）</a></li>
+        <li>JavaDrive||<a href="https://www.javadrive.jp/cstart/var/index2.html" target="_blank">変数の型</a></li>
+    </ul>
+</body>
+
+</html>

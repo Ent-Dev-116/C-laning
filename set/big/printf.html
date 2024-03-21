@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <link rel="stylesheet" href="bigi.css"><link rel="stylesheet" href="../code.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <h1>printf</h1>
+    <h3>printfとは？</h3>
+    <p>printfとは、必ず覚えておくべき基本事項です。<br>特に難しいところはありませんが、特殊な表示方法が少し難しいです。</p>
+    <p>今回はprintfの基本事項と、特殊な表示方法に少し触れます。</p>
+
+    <h3>printfの入力の仕方</h3>
+    <p>printfは<code>printf(<span class="red">"（　①　）"</span>,（　②　）);</code>のような入力法になります。</p>
+    <h5>①</h5>
+    <p>①には文字列が入ります。表示したい文字列を入れてください。</p>
+    <p>しかし、文字列と言っても文字だけではなく他の表示もできます。<br>詳しくは、下の表とサンプルコードを参照してください。</p>
+    <p>「入力」に書いていることを入力すれば、「何が表示できるか」の部分を表示してくれます。</p>
+    <table>
+        <tr>
+            <th>重要さ</th>
+            <th>入力</th>
+            <th>何が表示できるか</th>
+            <th>ひと言</th>
+        </tr><tr>
+            <td>★★★</td>
+            <td>\n<br>(\の表示は<br>「右下がりスラッシュ」になります。)</td>
+            <td>改行</td>
+            <td>よく使うよ。使わないはずがない。</td>
+        </tr><tr>
+            <td>★☆☆</td>
+            <td>\a</td>
+            <td>警報音</td>
+            <td>使わないし、使えない。</td>
+        </tr><tr>
+            <td>★☆☆</td>
+            <td>\f</td>
+            <td>改ページ</td>
+            <td>使い道分からん。</td>
+        </tr><tr>
+            <td>★★☆</td>
+            <td>\b</td>
+            <td>バックスペース</td>
+            <td>使えたら良い。文字を書き直す時に使うよ。</td>
+        </tr><tr>
+            <td>★★★</td>
+            <td>\r</td>
+            <td>復帰</td>
+            <td>要するに「行の先頭からまた書き始める」ってこと。カウントダウンに使う。</td>
+        </tr><tr>
+            <td>★★☆</td>
+            <td>\t</td>
+            <td>水平タブ</td>
+            <td>tabキーを押したときのスペース。…たまに使う。</td>
+        </tr><tr>
+            <td>★☆☆</td>
+            <td>\v</td>
+            <td>垂直タブ</td>
+            <td>\fとほぼ一緒。</td>
+        </tr><tr>
+            <td>★★☆</td>
+            <td>\\ \? \" \'</td>
+            <td>文字として入力</td>
+            <td>特殊文字を文字として出したいときに使う。</td>
+        </tr><tr>
+            <td>★☆☆</td>
+            <td>\0</td>
+            <td>NULL</td>
+            <td>空っぽの事。printfでは使わないよ。</td>
+        </tr>
+    </table>
+    <h5>②</h5>
+    <p>②には、変数の名前が入ってきます。<br>もし変数を表示するときはここに変数名を入れていきます。</p>
+    <p>変数の特殊文字は下の表を見てください。</p>
+    <table id="num">
+        <tr>
+            <th>重要さ</th>
+            <th>入力</th>
+            <th>何が表示できるか</th>
+            <th>ひと言</th>
+        </tr><tr>
+            <td>★★★</td>
+            <td>%d</td>
+            <td>int型</td>
+            <td>よく使うよ。使わないはずがない。</td>
+        </tr><tr>
+            <td>★★☆</td>
+            <td>%ld</td>
+            <td>long int型</td>
+            <td>長い整数。時々使う。</td>
+        </tr><tr>
+            <td>★★☆</td>
+            <td>%c</td>
+            <td>char型一文字</td>
+            <td>初めしか使わない。</td>
+        </tr><tr>
+            <td>★★★</td>
+            <td>%s</td>
+            <td>char型複数文字</td>
+            <td>死ぬほど使う。ただ、今はまだ放置でOK</td>
+        </tr><tr>
+            <td>★★☆</td>
+            <td>%f</td>
+            <td>小数表示</td>
+            <td>使う人は使う。小数の出番はちらほらある。</td>
+        </tr><tr>
+            <td>☆☆☆</td>
+            <td>%p</td>
+            <td>ポインタ</td>
+            <td>無視。今気にすると負け。</td>
+        </tr><tr>
+            <td>★★☆</td>
+            <td>%3</td>
+            <td>表示制限</td>
+            <td>数字の数だけ値を表示する。地味に使う。</td>
+        </tr><tr>
+            <td>★★★</td>
+            <td>%.3</td>
+            <td>表示制限</td>
+            <td>小数点のあとを、数字の数だけ値を表示する。floatで使う。</td>
+        </tr><tr>
+            <td>★★☆</td>
+            <td>%-3</td>
+            <td>表示制限</td>
+            <td>%3の左詰めになる。</td>
+        </tr><tr>
+            <td>★★☆</td>
+            <td>%03</td>
+            <td>表示制限</td>
+            <td>%3で表示できなかった分を0で埋める。地味に使う。</td>
+        </tr>
+    </table>
+    <h1>今までの説明を分かりやすくするサンプルコード</h1>
+    <div class="code_box">
+        <label>SAMPLE CODE [printf_sanp.c]</label>
+        <button type="button" onclick="copy1()">copy</button>
+<pre><code id="code1"><span class="purple">#include</span><span class="red">&lt;stdio.h&gt;</span>
+
+<span class="bule">/**********************************************
+    printf 説明用サンプルコード            
+    作成者:換気扇 
+    推奨ファイル名:printf_sanp.c          
+**********************************************/</span>
+
+<span class="green">int</span> main(<span class="green">void</span>){
+
+        <span class="bule">//ここら辺の変数についての話はこの後入ります。今は無視でOK</span>
+        <span class="green">int</span> a=<span class="red">10</span>;
+        <span class="green">float</span> b=<span class="red">1.5</span>;
+        <span class="green">char</span> c=<span class="red">'a'</span>;
+
+        <span class="bule">//エスケープシーケンス（特殊文字）の確認</span>
+        printf(<span class="red">"ここに文字を入力すると表示されます。"</span>);
+        printf(<span class="red">"<span class="purple">\n</span>と入力すると改行されます<span class="purple">\n\n</span>「と入力すると改行されます」が改行されて表示されるはずです。<span class="purple">\n</span>"</span>);
+        <span class="bule">//\rで、pppppp文字をprintfに変えます</span>
+        printf(<span class="red">"ppppppの表示です。"</span>);
+        printf(<span class="red">"<span class="purple">\r</span>printfの表示<span class="purple">\n</span>これで、ppppppと入力されるはずが、printfになるはずです。<span class="purple">\n</span>"</span>);
+
+        <span class="bule">//変数の表示です。上の変数の中身だけ見ておいてください。</span>
+        printf(<span class="red">"<span class="purple">%d\n</span>"</span>,a);
+        printf(<span class="red">"<span class="purple">%4d\n</span>"</span>,a);
+        printf(<span class="red">"<span class="purple">%04d\n</span>"</span>,a);
+        printf(<span class="red">"<span class="purple">%-4d\n</span>"</span>,a);
+        <span class="bule">//上は変数表示と表示制限です。</span>
+
+        printf(<span class="red">"<span class="purple">\n</span>"</span>);
+        <span class="bule">//見やすくするための工夫です。無くても良いですが、解りやすさは上がります。</span>
+
+        printf(<span class="red">"<span class="purple">%f\n</span>"</span>,b);
+        <span class="bule">//%fでそのまま表示すると、小数第六位まで表示されます…</span>
+        printf(<span class="red">"<span class="purple">%.3f\n</span>"</span>,b);
+        <span class="bule">//%の後に小数点と数字を入れると表示制限されます。</span>
+        printf(<span class="red">"<span class="purple">%c\n</span>"</span>,c);
+
+        printf(<span class="red">"<span class="purple">\n</span>"</span>);
+        <span class="bule">//これは小技です。最後に\nを入れると、Linuxの表示が改行されます。</span>
+
+        <span class="brown">return <span class="red">0</span></span>;
+}
+</code></pre>
+    </div>
+    <h3>サンプルコード徹底解説</h3>
+    <p>ここでは、サンプルコードで果たして何をしていたのかを表します。</p>
+    <h5>1,<code><span class="purple">#include</span></code> ... <code>(<span class="green">void</span>){</code>～定型文～</h5>
+    <p>ザ・定型文です。<br>今のうちは、「始めの合図」だと思ってください。</p>
+    <h5>2,<code><span class="green">int</span> a</code> ... <code><span class="green">char</span> c=<span class="red">'a'</span>;</code>～変数宣言～</h5>
+    <p>変数宣言というものです。今は無視でもいいです。</p>
+    <h5>3,<code>printf( </code>...<code> <span class="red">printfになるはずです。<span class="purple">\n</span>"</span>);</code>～単純な表示とエスケープシーケンス～</h5>
+    <p>printfの("")の中に文字を書くことで表示できることと、<br>"\n"で改行できることの確認です。</p>
+    <p><code>printf(<span class="red">"ppppppの表示です。"</span>);<br>printf(<span class="red">"<span class="purple">\r</span>printfの表示<span class="purple">\n</span>これで、ppppppと入力されるはずが、printfになるはずです。<span class="purple">\n</span>"</span>);</code><br>
+        は、少し特殊で、"pppppp"を表示した後に"printf"で上書きしているので、処理が速すぎて変わる瞬間は見れません。<br>
+    ただし、今後のfor文とsleepを使うと、タイマーなんかも作れます。</p>
+    <p>\n以外に興味がある人は、\nを書き換えて上記の表の通りに変更して試してみてください。</p>
+    <h5>4,<code>printf(<span class="red">"<span class="purple">%f</span></span></code> ... <code><span class="red"><span class="purple">%c\n</span>"</span>);</code>～変数表示～</h5>
+    <p>printfによる変数表示の確認です。表と同じ結果になっているはずです。</p>
+    <h5>5,<code><span class="brown">retu</span></code> ... <code>}</code>～定型文～</h5>
+    <p>「1,」の内容が始めの合図だとすると、こっちは「終わりの合図」です。<br>
+    「1,」と「5,」が何なのかは追々分かります。</p>
+    <h1>オマケ[printfでよくあるエラー三選]</h1>
+    <h3>1.ダブルクォーテーション</h3>
+    <p>ダブルクォーテーションをミスりがちです。<br>赤くなるので、表示したい文章が赤くなっていなければ、このエラーを疑いましょう。</p>
+    <p>しかし、<u>変数はダブルクォーテーション外</u>なので、変数をダブルクォーテーション内に入れないようにしましょう。</p>
+    <h3>2.変数足らず、変数違い</h3>
+    <p>変数が足りなかったり、変数の型が違ったり、変数の名前が違ったり…。<br>めちゃくちゃよくあるエラーなので、気を付けましょう。</p>
+    <h3>3.エスケープシーケンスミス</h3>
+    <p>エスケープシーケンスを違う文字で表示させようとすると起きます。<br>多分あんまりこのミスはないと思います。</p>
+    <h1>オマケ[今回の配布ヘッダファイル]</h1>
+    <div class="code_box">
+    <label>SAMPLE CODE [rgb.h]</label>
+    <button type="button" onclick="copyTo()">copy</button>
+<pre><code id="code"><span class="purple">#include</span><span class="red">&lt;stdio.h&gt;</span>
+<span class="bule">/**********************************************
+    printf による色変更表示関数            
+    作成者:換気扇 
+    推奨ファイル名:rgb.h          
+**********************************************/</span>
+
+<span class="bule">// 関数名:rgb  引数:char *print,int r,int g,int b  返り値:なし</span>
+
+<span class="bule">// 関数のプロトタイプ宣言（関数を使えるようにする）</span>
+<span class="green">void</span> rgb(<span class="green">char</span> *print,<span class="green">int</span> r,<span class="green">int</span> g,<span class="green">int</span> b);   <br>
+
+<span class="bule">//関数の実態宣言（関数の詳細説明）</span>
+<span class="green">void</span> rgb(<span class="green">char</span> *print,<span class="green">int</span> r,<span class="green">int</span> g,<span class="green">int</span> b){
+        printf(<span class="red">"<span class="purple">\x1b</span>[38;2;<span class="purple">%d</span>;<span class="purple">%d</span>;<span class="purple">%d</span>m<span class="purple">%s</span>"</span>,r,g,b,print);
+        printf(<span class="red">"<span class="purple">\x1b</span>[0m"</span>);
+}
+</code>
+</pre>
+    </div>
+    <p>このヘッダファイルは上級編の内容を含みまくるので、「そんな感じのがあるんだ」程度の感覚で大丈夫です。</p>
+    <h5>使い方</h5>
+    <code>rgb(<span class="red">"「表示したい文」"</span>,<span class="red">「rの値（整数）」<span>,<span class="red">「gの値（整数）」<span>,<span class="red">「bの値（整数）」</span>);</code>
+    <p>rgbという減法混色の方法で、色を付けての表示が可能になります。ヤッタネ。<br><code><span class="purple">\x1b</span></code>で色変更して表示をすることができるよ。詳しくは、参考資料を見てみてね。</p>
+    <br>
+    <h1>参考資料</h1>
+    <ul>
+        <li>JavaDrive||<a href="https://www.javadrive.jp/cstart/num/index5.html" target="_blank">エスケープシーケンスを使って特殊文字を記述する</a></li>
+        <li>だえうホームページ||<a href="https://daeudaeu.com/c-printf-color/" target="_blank">【C言語】printfで文字の色や背景色を変更する</a></li>
+    </ul>
+</body>
+</html>

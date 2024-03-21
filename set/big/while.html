@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <link rel="stylesheet" href="bigi.css">
+    <link rel="stylesheet" href="../code.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <!--()は取り上げるネタ
+        []はヘッダファイルの名前
+    -->
+    <script src="../click_copy.js"></script>
+
+    <h1>while</h1>
+    <h3>whileの入力の仕方</h3>
+    <p>whileは<code><span class="brown">while</span>(（　①　）){};</code>のような入力法になります。</p>
+    <h5>①</h5>
+    <p>if文と同じように、①の条件が満たされている間、ずっと{}の中身の実行を繰り返します。<br>
+        比較式などはすべて同じです。イメージとしては効果が続くタイプのif文です。</p>
+    <h3>do...while</h3>
+    <p>whileにはdo...whileという物も存在しており、これを使用すると、必ず1回は実行されるようになります。</p>
+
+    <h1>今までの説明を分かりやすくするサンプルコード</h1>
+    <div class="code_box">
+        <label>SAMPLE CODE [while_sanp.c]</label>
+        <button type="button" onclick="copy1()">copy</button>
+        <pre><code id="code1"><span class="purple">#include</span><span class="red">&lt;stdio.h&gt;</span>
+
+<span class="bule">/**********************************************
+    while 説明用サンプルコード            
+    作成者:換気扇  
+    推奨ファイル名:while_sanp.c          
+**********************************************/</span>
+
+<span class="green">int</span> main(<span class="green">void</span>){
+
+        <span class="bule">// 変数宣言</span>
+        <span class="green">int </span>pass,num,ans=0;
+
+        <span class="bule">// whileで永遠加算</span>
+        <span class="brown">while</span>(num!=<span class="red">99999</span>){
+            printf(<span class="red">"加算したい値を入力(99999で終了)<span class="purple">\n</span>&gt;"</span>);
+            scanf(<span class="red">"<span class="purple">%d</span>"</span>,&num);
+            ans+=num;
+        }
+        printf(<span class="red">"<span class="purple">\n\n</span>いままで入力した値の合計は[<span class="purple">%d</span>]です。<span class="purple">\n\n</span>&gt;"</span>,ans);
+
+        <span class="bule">// do...whileでパスワード認証</span>
+        printf(<span class="red">"新しいパスワード(数字四桁)を入力してください<span class="purple">\n</span>&gt;"</span>);
+        scanf(<span class="red">"<span class="purple">%d</span>"</span>,&pass);
+        <span class="brown">do</span>{
+            printf(<span class="red">"<span class="purple">\n</span>パスワードを入力してください(数字四桁)<span class="purple">\n</span>&gt;"</span>);
+            scanf(<span class="red">"<span class="purple">%d</span>"</span>,&num);
+        }<span class="brown">while</span>(num==pass);
+
+        printf(<span class="red">"<span class="purple">\n\n</span>パスワードを認証しました。<span class="purple">\n</span>"</span>);
+
+<!--ここにコードが入ってくる-->
+        <span class="brown">return <span class="red">0</span></span>;
+}
+</code></pre>
+    </div>
+    <h3>サンプルコード徹底解説</h3>
+    <p>ここでは、サンプルコードで果たして何をしていたのかを表します。</p>
+    <h5>1,<code><span class="purple">#include</span></code> ... <code>(<span class="green">void</span>){</code>～定型文～
+    </h5>
+    <p>ザ・定型文です。<br>今のうちは、「始めの合図」だと思ってください。</p>
+    <h5>2,<code><span class="green">int </span>pass,num,ans=0;</code>～変数宣言～</h5>
+    <p>変数宣言です。<br>
+        変数の解説だけ少し入れます。</p>
+    <ul>
+        <li><u>[pass]</u> ... パスワードを保存する変数です。</li>
+        <li><u>[num]</u> ... キーボードから入力されたいろいろな数値を保存する変数です。[number]の略です。</li>
+        <li><u>[ans]</u> ... 答えを保存するための変数です。<b>加算演算を使っているので、初期化は必須です。</b>[answer]の略です。</li>
+    </ul>
+    <h5>3,<code><span class="brown">while</span>(num!=<span class="red">99999</span>){</code> ...
+        <code>です。<span class="purple">\n\n</span>&gt;"</span>,ans);</code>～while～
+    </h5>
+    <p>while文による加算するコードです。<br>
+        入力した値が、[ans]に加算され続けます。</p>
+    <h5>4,<code>printf(<span class="red">"新しいパスワード</span></code> ...
+        <code><span class="red">した。<span class="purple">\n</span>"</span>);</code>～do...while～
+    </h5>
+    <p>do...while文による、パスワード認証です。<br>
+        あまり効果的ではないですが、今回は仕様のテストなので気にしないこととします。</p>
+    <h5>5,<code><span class="brown">retu</span></code> ... <code>}</code>～定型文～</h5>
+    <p>「1,」の内容が始めの合図だとすると、こっちは「終わりの合図」です。<br>
+        「1,」と「5,」が何なのかは追々分かります。</p>
+    <h1>オマケ[whileでよくあるエラー二選]</h1>
+    <h3>1.条件式の勘違い</h3>
+    <p>whileの条件式は<b>続ける条件</b>です。for(中級編で出てきます)の<b>終わる条件ではない</b>ので、そのバグは多めです。</p>
+    <h3>2.中かっこ忘れ</h3>
+    <p>これは中かっこを使用する構文全てに言えることで、中かっこを閉じ忘れるエラーはよくあることです。</p>
+    <h1>オマケ[今回の配布ヘッダファイル]</h1>
+    <div class="code_box">
+        <label>SAMPLE CODE [pass_code.h]</label>
+        <button type="button" onclick="copyTo()">copy</button>
+        <pre><code id="code"><span class="purple">#include</span><span lass="red">&lt;stdio.h&gt;</span>
+<!--ここにコードが入ってくる-->
+
+<span class="green">int</span> pass(<span class="green">char</span> *name,<span class="green">int</span> ent);
+
+<span class="green">int</span> pass(<span class="green">char</span> *name,<span class="green">int</span> ent){
+    <span class="green">int</span> def;
+    <span class="green">FILE</span> *fp;
+
+    fp=fopen(name,<span class="red">"r"</span>);
+    <span class="brown">if</span>(fp!=<span class="red">NULL</span>){
+        fscanf(fp,<span class="red">"<span class="purple">%d</span>"</span>,&def);
+        <span class="brown">if</span>(def==ent){
+            printf(<span class="red">"<span class="purple">\n</span>[CONNECTION:パスワードを認証しました]<span class="purple">\n</span>"</span>);
+            <span class="brown">return <span class="red">1</span></span>;
+        }<span class="brown">else</span>{
+            printf(<span class="red">"<span class="purple">\n</span>[ERROR:パスワードが違います]<span class="purple">\n</span>"</span>);
+            <span class="brown">return <span class="red">0</span></span>;
+        }
+    }<span class="brown">else</span>{
+        printf(<span class="red">"<span class="purple">\n</span>[ERROR:ファイル自体存在しておりません]<span class="purple">\n</span>"</span>);
+        <span class="brown">return <span class="red">0</span></span>;
+    }
+}
+</code>
+</pre>
+    </div>
+    <h5>使い方</h5>
+    <code>「int型の変数」 = pass(<span class="red">"「パスワードの保存されているテキストファイル名」"</span>,<span class="red">「入力されたパスワード」</span>);</code>
+    <br>
+    <p>パスワード認証ができるようになるよ。<br>
+        [test.txt]に[1111]って保存してある場合はパスワードが[1111]になるよ。内容は理解しなくていいよ。<br>
+        パスワードが通ったら「int型の変数」は「1」になる。失敗したら「0」になるよ。</p>
+    <br>
+    <h1>参考資料</h1>
+    <ul>
+        <li>モノづくりC言語塾||<a href="https://monozukuri-c.com/langc-file-open-close/#toc15" target="_blank">C言語
+                ファイルの開き方・閉じ方【fopenとfcloseの使い方】</a></li>
+    </ul>
+</body>
+
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <link rel="stylesheet" href="bigi.css"><link rel="stylesheet" href="../code.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <!--()は取り上げるネタ
+        []はヘッダファイルの名前
+    -->
+    <script src="../click_copy.js"></script>
+
+    <h1>scanf</h1>
+ 
+    <h3>sacnfの入力の仕方</h3>
+    <p>scanfは<code>scanf(<span class="red">"（　①　）"</span>,（　②　）);</code>のような入力法になります。</p>
+    <h5>①</h5>
+
+    <p>①には変数表示の特殊文字が入ります。<br>それだけなので、<a href="printf.html#num">printfの変数表示の表</a>をご覧ください。</p>
+
+    <h5>②</h5>
+    <p>ここには変数名が入ります。<br>気を付けるべきは、特例として<b><u>int型等の数字型には&が付く</u></b>ことだけです。</p>
+    
+    <h1>今までの説明を分かりやすくするサンプルコード</h1>
+    <div class="code_box">
+        <label>SAMPLE CODE [scanf_sanp.c]</label>
+        <button type="button" onclick="copy1()">copy</button>
+<pre><code id="code1"><span class="purple">#include</span><span class="red">&lt;stdio.h&gt;</span>
+
+<span class="bule">/**********************************************
+    scanf 説明用サンプルコード            
+    作成者:換気扇 
+    推奨ファイル名: scanf_sanp.c          
+**********************************************/</span>
+
+<span class="green">int</span> main(<span class="green">void</span>){
+
+        <span class="bule">//変数宣言というものです。今は無視でもいいです。</span>
+        <span class="green">int</span> a=1;
+
+        <span class="bule">//int aに入っている数値の確認</span>
+        printf(<span class="red">"<span class="purple">%d</span>"</span>,a);
+
+        printf(<span class="red">"<span class="purple">\n</span>"</span>);
+
+        <span class="bule">//scanfの確認</span>
+        printf(<span class="red">"int型（a）への代入<span class="purple">\n</span>==&gt;"</span>);
+        scanf(<span class="red">"<span class="purple">%d</span>"</span>,&a);
+        printf(<span class="red">"int型（a）の内容<span class="purple">\n</span>--&gt;<span class="purple">%d</span>"</span>,a);
+
+        printf(<span class="red">"<span class="purple">\n</span>"</span>);
+        
+        <span class="brown">return <span class="red">0</span></span>;
+}
+</code></pre>
+    </div>
+    <h3>サンプルコード徹底解説</h3>
+    <p>ここでは、サンプルコードで果たして何をしていたのかを表します。</p>
+    <h5>1,<code><span class="purple">#include</span></code> ... <code>(<span class="green">void</span>){</code>～定型文～</h5>
+    <p>ザ・定型文です。<br>今のうちは、「始めの合図」だと思ってください。</p>
+    <h5>2,<code><span class="green">int</span> a=1;</code>～変数宣言～</h5>
+    <p>変数宣言というものです。今は無視でもいいです。</p>
+    <h5>3,<code>printf(<span class="red">"int</span></code> ... <code><span class="red"><span class="purple">%d</span>"</span>,a);</code></h5>
+    <p>scanfの確認です。</p>
+    <p>流れは、</p>
+        <ul>
+            <li>printfで変数の中に入っているものを出す</li>
+            <li>↓</li>
+            <li>scanfで変数の中に入れる</li>
+            <li>↓</li>
+            <li>printfで中に入った物を表示する</li>
+        </ul>
+    <p>という順番です。</p>
+    <h5>4,<code><span class="brown">retu</span></code> ... <code>}</code>～定型文～</h5>
+    <p>「1,」の内容が始めの合図だとすると、こっちは「終わりの合図」です。<br>
+    「1,」と「4,」が何なのかは追々分かります。</p>
+    <h1>オマケ[scanfでよくあるエラー三選]</h1>
+    <h3>1.&忘れ</h3>
+    <p>初めのころは意識していれば問題ない。<br>けど「ポインタ」という<b>"C言語の便利だけど超絶問題児"</b>を体現した奴が来ると混乱する。</p>
+    <p>今は脳死で意識し続ければOK。</p>
+    <h3>2.%の後の文字</h3>
+    <p>打ち込んでいると時々%の後間違えることがある。でも、これはあんまり多い訳ではない。</p>
+    <h3>3."%d,&a"</h3>
+    <p>王道。初心者やりがち。<br>変数は大体ダブルクォーテーションの外に書くよ。</p>
+    <h1>オマケ[今回の配布ヘッダファイル]</h1>
+    <div class="code_box">
+    <label>SAMPLE CODE [char_s.h]</label>
+    <button type="button" onclick="copyTo()">copy</button>
+<pre><code id="code"><span class="purple">#include</span><span class="red">&lt;stdio.h&gt;</span>
+<span class="purple">#include</span><span class="red">&lt;stdlib.h&gt;</span>
+
+<span class="bule">/**********************************************
+    char型による1文字整数のエラーの出さない表示          
+    作成者:換気扇
+    推奨ファイル名: char_s.h          
+**********************************************/</span>
+
+<span class="bule">//関数のプロトタイプ宣言（関数を使えるようにする）</span>
+<span class="green">int</span> char_s(<span class="green">int</span> a);
+
+<span class="bule">//関数の実態宣言（関数の詳細説明）</span>
+<span class="green">int</span> char_s(<span class="green">int</span> a){
+    <span class="green">char</span> box;
+    <span class="green">int</span> c;
+
+    <span class="brown">do</span>{
+        <span class="brown">if</span>(a==<span class="red">1</span>){
+            fflush(<span class="red">stdout</span>);
+            system(<span class="red">"clear"</span>);
+        }
+        printf(<span class="red">"数字１ケタを入力してください---&gt;"</span>);
+        box=getchar();
+
+        c=(<span class="green">unsigned char</span>)box-<span class="red">48</span>;
+    }<span class="brown">while</span>(c&lt;<span class="red">0</span> || c&gt;<span class="red">9</span>)
+    
+    <span class="brown">return</span> c;
+}
+</code>
+</pre>
+    </div>
+    <h5>使い方</h5>
+    <code>「int型の変数」 = char_s(<span class="red">「scanfの失敗時にクリアするか」</span>);</code>
+    <br>
+    <p>scanfでint型の時に文字を入れてもバグらなくなるよ。<br>scanfの失敗時にクリアするときは括弧の中に1,それ以外は1以外を入力してください。</p>
+    <h1>参考資料</h1>
+    <ul>
+        <li>Marycore||<a href="https://marycore.jp/prog/c-lang/convert-or-cast-char-to-int/" target="_blank">char型をint型に変換する方法と注意【数値化 キャスト 文字列変換】</a></li>
+    </ul>
+</body>
+</html>

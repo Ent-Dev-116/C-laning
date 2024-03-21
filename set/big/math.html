@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <link rel="stylesheet" href="bigi.css">
+    <link rel="stylesheet" href="../code.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <!--()は取り上げるネタ
+        []はヘッダファイルの名前
+    -->
+    <script src="../click_copy.js"></script>
+
+    <h1>四則演算（一般）</h1>
+    <h3>四則演算の入力の仕方</h3>
+    <p>四則演算は、記号で入力します。掛け算は<code>*</code>、割り算は<code>/</code>のような入力法になります。<br>
+        足し算引き算は、+,-で変わりません。<br>
+        余りを求めるときには、%を使用します。</p>
+    <h1>今までの説明を分かりやすくするサンプルコード</h1>
+    <div class="code_box">
+        <label>SAMPLE CODE [cal_sanp.c]</label>
+        <button type="button" onclick="copy1()">copy</button>
+        <pre><code id="code1"><span class="purple">#include</span><span class="red">&lt;stdio.h&gt;</span>
+
+<span class="bule">/**********************************************
+    四則演算 説明用サンプルコード            
+    作成者:換気扇 
+    推奨ファイル名:cul_sanp.c          
+**********************************************/</span>
+
+<span class="green">int</span> main(<span class="green">void</span>){
+<!--ここにコードが入ってくる-->
+        <span class="bule">//変数宣言</span>
+        <span class="green">int</span> num1,num2,ans;
+        
+        <span class="bule">//計算するための値を入力</span>
+        printf(<span class="red">"num1<span class="purple">\n</span>&gt;"</span>);
+        scanf(<span class="red">"<span class="purple">%d</span>&gt;"</span>,&num1);
+        printf(<span class="red">"num2(0以外)<span class="purple">\n</span>&gt;"</span>);
+        scanf(<span class="red">"<span class="purple">%d</span>&gt;"</span>,&num2);
+
+        <span class="bule">//計算</span>
+        ans=num1+num2;
+        printf(<span class="red">"<span class="purple">\n</span>演算子(+)を使用した足し算(num1+num2)<span class="purple">\n%d\n</span>"</span>,ans);
+
+        ans=num1-num2;
+        printf(<span class="red">"<span class="purple">\n</span>演算子(-)を使用した引き算(num1-num2)<span class="purple">\n%d\n</span>"</span>,ans);
+     
+        ans=num1*num2;
+        printf(<span class="red">"<span class="purple">\n</span>演算子(*)を使用した掛け算(num1*num2)<span class="purple">\n%d\n</span>"</span>,ans);
+        
+        ans=num1/num2;
+        printf(<span class="red">"<span class="purple">\n</span>演算子(/)を使用した割り算(num1/num2)<span class="purple">\n%d\n</span>"</span>,ans);
+
+        ans=num1%num2;
+        printf(<span class="red">"<span class="purple">\n</span>演算子(%)を使用した余りを求める演算(num1%num2)<span class="purple">\n%d\n</span>"</span>,ans);
+
+        <span class="bule">//最後の改行</span>
+        printf(<span class="red">"<span class="purple">\n</span>"</span>);
+
+        <span class="brown">return <span class="red">0</span></span>;
+}
+</code></pre>
+    </div>
+    <h3>サンプルコード徹底解説</h3>
+    <p>ここでは、サンプルコードで果たして何をしていたのかを表します。</p>
+    <h5>1,<code><span class="purple">#include</span></code> ... <code>(<span class="green">void</span>){</code>～定型文～
+    </h5>
+    <p>ザ・定型文です。<br>今のうちは、「始めの合図」だと思ってください。</p>
+    <h5>2,<code><span class="green">int </span>num1,num2,ans;</code>～変数宣言～</h5>
+    <p>前回の変数宣言そのままです。<br>
+        変数の解説だけ少し入れます。</p>
+    <ul><li><u>[num1]</u> ... 演算をするための数字1です。[number1]の略です。</li>
+        <li><u>[num2]</u> ... 演算をするための数字2です。[number2]の略です。</li>
+        <li><u>[ans]</u> ... 答えを保存するための変数です。[answer]の略です。</li>
+    </ul>
+    <h5>3,<code>printf(<span class="red">"num1<span class="purple">\n</span>...<span class="red">"<span class="purple">%d</span>&gt;"</span>,&num2);</code>～変数に入力～
+    </h5>
+    <p>変数に代入します。これで自由な値を入れて、四則演算を自由な値で行えます。</p>
+    <h5>4,<code>printf(<span class="red">"<span class="purple">\n</span>演算子(+)</span>...<span class="red">割り算(num1/num2)<span class="purple">\n%d\n</span>"</span>,ans);</code>～演算～
+    </h5>
+    <p>四則演算が使用できることの確認です。</p>
+    <p>流れは、</p>
+        <ul>
+            <li>scanfで変数の中に入れる</li>
+            <li>↓</li>
+            <li>四則演算を行った値を[ans]に入れる</li>
+            <li>↓</li>
+            <li>printfで[ans]に入った物を表示する</li>
+            <li>↓</li>
+            <li>上二つを色々な演算で試す</li>
+        </ul>
+    <p>という順番です。</p>
+    <h5>5,<code><span class="brown">retu</span></code> ... <code>}</code>～定型文～</h5>
+    <p>「1,」の内容が始めの合図だとすると、こっちは「終わりの合図」です。<br>
+        「1,」と「5,」が何なのかは追々分かります。</p>
+    <br>
+    
+    <h1>四則演算（短縮記法）</h1>
+    <h3>短縮記法とは？</h3>
+    <p>短縮記法は、いままで書いていた演算をより分かりやすく書くための技術です。<br>
+    使わなくてもできますが、使うともっとわかりやすくなります。</p>
+    <h3><code>num1=num1+num2;</code>-&gt;<code>num1+=num2;</code></h3>
+    <p>「ある変数1」と「ある変数2」を計算した後に、「ある変数1」に代入するときに使います。<br>
+    <code>+=</code>だけでなく、<code>*=</code>などの上記の四則演算ならすべて使えます。</p>
+    <h3><code>num1=num1+<span class="red">1</span>;</code>-&gt;<code>num1+=<span class="red">1</span>;</code>-&gt;<code>num1++;</code></h3>
+    <p>上記のように短縮記法を短縮するという事ができます。<br>
+    「ある変数」に単純に「1」を加算したいときに使えます。そして、<code>num1--;</code>のように、単純に「1」を引きたいときにも使えます。<br>
+    気を付けるべきは、<code>num1+=<span class="red">1</span>;</code>の省略記法なので、「ある変数」に加算された値が勝手に代入されます。<br>
+    <code>++num1;</code>という、<u>他の計算より先に「1」を加算する方法</u>もありますが、実用的ではないのであまり用途はありません。</p><br>
+
+
+    <h1>今までの説明を分かりやすくするサンプルコード</h1>
+    <div class="code_box">
+        <label>SAMPLE CODE [cal_short_sanp.c]</label>
+        <button type="button" onclick="copy1()">copy</button>
+        <pre><code id="code1"><span class="purple">#include</span><span class="red">&lt;stdio.h&gt;</span>
+    
+<span class="bule">/**********************************************
+    四則演算 説明用サンプルコード            
+    作成者:換気扇 
+    推奨ファイル名:cul_short_sanp.c          
+**********************************************/</span>
+    
+<span class="green">int</span> main(<span class="green">void</span>){
+    <!--ここにコードが入ってくる-->
+        <span class="bule">//変数宣言</span>
+        <span class="green">int</span> num1,num2;
+            
+        <span class="bule">//計算するための値を入力</span>
+        printf(<span class="red">"num1<span class="purple">\n</span>&gt;"</span>);
+        scanf(<span class="red">"<span class="purple">%d</span>&gt;"</span>,&num1);
+        printf(<span class="red">"num2(0以外)<span class="purple">\n</span>&gt;"</span>);
+        scanf(<span class="red">"<span class="purple">%d</span>&gt;"</span>,&num2);
+    
+        <span class="bule">//計算</span>
+        num1*=num2;
+        printf(<span class="red">"<span class="purple">\n</span>演算子(*=)を使用した掛け算(num1*=num2)<span class="purple">\n%d\n</span>"</span>,num1);
+    
+        num2++;
+        printf(<span class="red">"<span class="purple">\n</span>演算子(++)を使用した加算(num2++)<span class="purple">\n%d\n</span>"</span>,num2);
+
+        <span class="bule">//最後の改行</span>
+        printf(<span class="red">"<span class="purple">\n</span>"</span>);
+
+        <span class="brown">return <span class="red">0</span></span>;
+}
+    </code></pre>
+    </div>
+    <h3>サンプルコード徹底解説</h3>
+    <p>ここでは、サンプルコードで果たして何をしていたのかを表します。</p>
+    <h5>1,<code><span class="purple">#include</span></code> ... <code>(<span class="green">void</span>){</code>～定型文～
+    </h5>
+    <p>ザ・定型文です。<br>今のうちは、「始めの合図」だと思ってください。</p>
+    <h5>2,<code><span class="green">int </span>num1,num2;</code>～変数宣言～</h5>
+    <p>前回の変数宣言そのままです。<br>
+        変数の解説だけ少し入れます。</p>
+    <ul><li><u>[num1]</u> ... 演算をするための数字1です。[number1]の略です。こっちのサンプルコードでは[num2]との掛け算を代入します。</li>
+        <li><u>[num2]</u> ... 演算をするための数字2です。[number2]の略です。こっちのサンプルコードでは[num2]を加算した値を代入します。</li>
+    </ul>
+    <h5>3,<code>printf(<span class="red">"num1<span class="purple">\n</span></span></code>...<code><span class="red">"<span class="purple">%d</span>&gt;"</span>,&num2);</code>～変数に入力～
+    </h5>
+    <p>変数に代入します。これで自由な値を入れて、四則演算を自由な値で行えます。</p>
+    <h5>4,<code>printf(<span class="red">"<span class="purple">\n</span>演算子(*=)</span></code>...<code><span class="red">加算(num2++)<span class="purple">\n%d\n</span>"</span>,ans);</code>～演算～
+    </h5>
+    <p>省略記法の演算が使用できることの確認です。<br>流れは前のコードと同じです。</p>
+    <h5>5,<code><span class="brown">retu</span></code> ... <code>}</code>～定型文～</h5>
+    <p>「1,」の内容が始めの合図だとすると、こっちは「終わりの合図」です。<br>
+        「1,」と「5,」が何なのかは追々分かります。</p>
+    <br>
+    <h1>オマケ[四則演算と省略記法でよくあるエラー]</h1>
+    <h3>変数型の違い</h3>
+    <p>恐らく整数同士の割り算を見て分かったと思いますが、小数点以下切り捨ての為、[1/3]は[0]になります。<br>
+    そのため、[float]を使う必要があるのですが、<b>整数と小数の型が違うと計算できません</b>。計算の時は、変数や数値の型をそろえるよう注意しましょう。</p>
+    <h1>参考資料</h1>
+    <ul>
+        <li>JavaDrive||<a href="https://www.javadrive.jp/cstart/ope/index4.html#google_vignette" target="_blank">演算子の前置きと後置きについて</a></li>
+    </ul>
+</body>
+
+</html>

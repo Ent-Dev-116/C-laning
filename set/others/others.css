@@ -1,0 +1,105 @@
+  h1 {
+    padding: 0.4em 0.5em;/*文字の上下 左右の余白*/
+    color: #d1d1d1;/*文字色*/
+    background: #4f4f4f;/*背景色*/
+    border-left: solid 5px #00325b;/*左線*/
+    border-bottom: solid 3px #3e3e3e;/*下線*/
+  }
+
+  h3 {
+    padding: 0.4em 0.5em;/*文字の上下 左右の余白*/
+    color: #D1D1D1;/*文字色*/
+    background: #4f4f4f;/*背景色*/
+    border-left: solid 5px #00605c;/*左線*/
+    border-bottom: solid 3px #3e3e3e;/*下線*/
+  }
+
+  h5 {
+    padding: 0.4em 0.5em;/*文字の上下 左右の余白*/
+    color: #D1D1D1;/*文字色*/
+    background: #4f4f4f;/*背景色*/
+    border-left: solid 5px #00214e;/*左線*/
+    border-bottom: solid 3px #3e3e3e;/*下線*/
+  }
+
+  h6 {
+    color: rgb(150,150,150);
+  }
+
+  table{
+    width: 100%;
+    border-collapse:separate;
+    border-spacing: 0;
+  }
+  
+  table th:first-child{
+    border-radius: 5px 0 0 0;
+  }
+  
+  table th:last-child{
+    border-radius: 0 5px 0 0;
+    border-right: 1px solid #3c6690;
+  }
+  
+  table th{
+    text-align: center;
+    color:white;
+    background: linear-gradient(#829ebc,#225588);
+    border-left: 1px solid #3c6690;
+    border-top: 1px solid #3c6690;
+    border-bottom: 1px solid #3c6690;
+    box-shadow: 0px 1px 1px rgba(255,255,255,0.3) inset;
+    width: 25%;
+    padding: 10px 0;
+  }
+  
+  table td{
+    text-align: center;
+    border-left: 1px solid #a8b7c5;
+    border-bottom: 1px solid #a8b7c5;
+    border-top:none;
+    box-shadow: 0px -3px 5px 1px #eee inset;
+    background-color: white;
+    width: 25%;
+    padding: 10px 0;
+  }
+  
+  table td:last-child{
+    border-right: 1px solid #a8b7c5;
+  }
+  
+  table tr:last-child td:first-child {
+    border-radius: 0 0 0 5px;
+  }
+
+  body{
+    background-image: url(p0495_m.jpg);
+    background-size: cover;
+    margin: 2%;
+  }
+
+  ul{
+    background-color: white;
+    border: 2px black solid;
+    display:inline-block;
+    list-style: none;
+    border-radius: 8px;
+    padding: 1%;
+  }
+
+  .input{
+    border: 2px gray solid;
+    text-align: center;
+    padding-bottom: 5px;
+    padding-top: 5px;
+  }
+
+  .qas{
+    height: 51vh;
+    overflow: scroll;
+    margin: 8px;
+  }
+
+  p{
+    color: white;
+  }
