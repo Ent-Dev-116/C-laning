@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <link rel="stylesheet" href="inte.css"><link rel="stylesheet" href="../code.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <!--()は取り上げるネタ
+        []はヘッダファイルの名前
+    -->
+    <script src="../click_copy.js"></script>
+
+    <h1>char</h1>
+    <h3>charの使用方法</h3>
+    <p>charは変数なので、基本の扱いは変わりません。<br>
+    ただし、配列型の時の扱いは、<b>何癖もある、よく忘れてしまう</b>ものとなっているので、そこだけ抑えましょう。</p>
+    <h1>配列型が難しい理由</h1>
+    <h3>文字列</h3>
+    <p>charを配列型にすると、文字列型になるんです。<br>
+    少し仕組みの話をすると、charで使えたアルファベットを、配列として伸ばす感じです。<br>
+    その伸ばしたところでは、日本語が扱えて…。となるのですが、まぁ難しいです。</p>
+    <h3>何がむずい</h3>
+    <p>今のところ話した内容では、扱いも同じになっています。<br>
+    しかし、型としては<b>文字列型</b>なんです。なので、<code>a[<span class="red">3</span>]=<span class="red">"あ"</span>;</code>として代入できないのです。<br>
+    代入するには、<b>string.h</b>の中の構文が必要となってきます。</p>
+    <h1>string.h ～stringの中の使える構文～</h1>
+    <h3>strcpy</h3>
+    <p>これで代入ができるようになります。使い方は<code>strcpy(　①　,"　②　");</code>で、①には<b>char型配列の名前</b>が入ります。<br>
+    ②には<b>文字列</b>が入ります。こうすることで、配列に代入できるようになります。</p>
+    <h3>strcat</h3>
+    <p>代入済みのchar型配列の末尾にくっつけることができます。使い方は<code>strcat(　①　,"　②　");</code>で、①には<b>char型配列の名前</b>が入ります。<br>
+    ②には<b>文字列</b>が入ります。扱いは全く同じです。こうすることで、文字列に文字列を結合できるようになります。</p>
+
+    <h1>今までの説明を分かりやすくするサンプルコード</h1>
+    <div class="code_box">
+        <label>SAMPLE CODE [char_test.c]</label>
+        <button type="button" onclick="copy1()">copy</button>
+<pre><code id="code1"><span class="purple">#include</span><span class="red">&lt;stdio.h&gt;</span>
+<span class="purple">#include</span><span class="red">&lt;string.h&gt;</span>
+
+<span class="bule">/**********************************************
+    char string.h 説明用サンプルコード            
+    作成者:換気扇  
+    推奨ファイル名:char_test.c          
+**********************************************/</span>
+
+<span class="green">int</span> main(<span class="green">void</span>){
+
+        <span class="green">char</span> en,str[<span class="red">64</span>],temp[<span class="red">32</span>];
+
+        <span class="bule">//1文字の扱い</span>
+        printf(<span class="red">"文字を入力（アルファベット1文字）<span class="purple">\n</span>&gt;"</span>);
+        scanf(<span class="red">"<span class="purple">%c</span>"</span>,&en);
+        printf(<span class="red">"<span class="purple">\n</span>あなたが入力した一文字 -&gt; <span class="purple">%c\n\n\n</span>"</span>,en);
+
+        <span class="bule">//文字列の扱い（scanf）</span>
+        printf(<span class="red">"文字列を入力<span class="purple">\n</span>&gt;"</span>);
+        scanf(<span class="red">"<span class="purple">%s</span>"</span>,str);
+        printf(<span class="red">"<span class="purple">\n</span>あなたが入力した文字列 -&gt; <span class="purple">%s\n\n\n</span>"</span>,str);
+
+        <span class="bule">//文字列の扱い（string構文）</span>
+        printf(<span class="red">"貴方様のお名前を入力してください。<span class="purple">\n</span>&gt;"</span>);
+        scanf(<span class="red">"<span class="purple">%s</span>"</span>,temp);
+        strcpy(str,temp);
+        strcat(str,<span class="red">" 様。ようこそ。"</span>);
+        printf(<span class="red">"<span class="purple">\n\n\n%s\n</span>"</span>,str);
+
+<!--ここにコードが入ってくる-->
+        <span class="brown">return <span class="red">0</span></span>;
+}
+</code></pre>
+    </div>
+    <h3>サンプルコード徹底解説</h3>
+    <p>ここでは、サンプルコードで果たして何をしていたのかを表します。</p>
+    <h5>1,<code><span class="purple">#include</span></code> ... <code>(<span class="green">void</span>){</code>～定型文～</h5>
+    <p>ザ・定型文です。<br>今のうちは、「始めの合図」だと思ってください。</p>
+    <h5>2,<code><span class="green">char</span> en,str[<span class="red">64</span>],temp[<span class="red">32</span>];</code>～変数宣言～</h5>
+    <p>いつもの変数宣言です。変数の詳細は以下の通りです。</p>
+    <ul>
+        <li><u>[en]</u> ... char型で、アルファベット1文字を代入する変数</li>
+        <li><u>[str]</u> ... char型配列、つまり文字列型で、表示に使う文字列を代入する変数</li>
+        <li><u>[temp]</u> ... 文字列型で、名前を一時保存する変数</li>
+    </ul>
+    <h5>3,<code>printf(<span class="red">"文字を入力（アルフ</span></code> ... <code><span class="red">&gt; <span class="purple">%c\n\n\n</span>"</span>,en);</code>～charの仕様確認～</h5>
+    <p>char型をそのまま使った場合の仕様確認です。<br>
+    printfの時に書いてあった<b>%c</b>を使用します。（charのcです。）<br>
+    アルファベット以外、もしくは長文を入れるとバグります。</p>
+    <h5>4,<code>printf(<span class="red">"文字列を入力</span></code> ... <code><span class="red">&gt; <span class="purple">%s\n\n\n</span>"</span>,str);</code>～scanfでの文字列使用～</h5>
+    <p>char型を配列にして、プログラミングではよく使われる<b>文字列型</b>とした形の仕様の確認です。<br>
+    実は、前記した<b>string構文</b>だけでなく、scanfやprintfの表で説明した<b>%s</b>でも扱えます。（stringのsです。）<br></p>
+    <h5>5,<code>printf(<span class="red">"貴方様の</span></code> ... <code><span class="red">"<span class="purple">\n\n\n%s\n</span>"</span>,str);</code>～string構文の仕様～</h5>
+    <p>strcpy と strcatの仕様確認です。<br>
+    おそらく今までの構文より分かりやすくなっていると思います。</p>
+    <h5>6,<code><span class="brown">retu</span></code> ... <code>}</code>～定型文～</h5>
+    <p>「1,」の内容が始めの合図だとすると、こっちは「終わりの合図」です。<br>
+    「1,」と「6,」が何なのかは追々分かります。</p>
+    <h1>オマケ[文字列型でよくあるエラー]</h1>
+    <h3>文字列型への直接代入</h3>
+    <p>もう一度言いますが、文字列型に直接代入はできません。<br>
+    なので、プログラムの方から文章を代入するにはstring構文を使うのです。</p>
+</body>
+</html>

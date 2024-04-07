@@ -7,7 +7,7 @@ async function setting(){
     const data=await response.json();
 
     const HTML = document.getElementById('canvas');
-    for (var i = 0; i < data.length; i++) {
+    for (var i = data.length-1; i >= 0; i--) {
         contentNode = document.createRange().createContextualFragment(`
         <p class="box">`+data[i][0]+`<span class="date"></span><span class="cont">`+data[i][1]+`</span></p>
         `);

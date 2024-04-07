@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <link rel="stylesheet" href="inte.css"><link rel="stylesheet" href="../code.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <!--()は取り上げるネタ
+        []はヘッダファイルの名前
+    -->
+    <script src="../click_copy.js"></script>
+
+    <h1>配列</h1>
+    <h3>配列の入力の仕方</h3>
+    <p>配列は<code>（　①　） （　②　）[（　③　）];</code>のような入力法になります。</p>
+    <h5>①</h5>
+    <p>ここには変数の型が入ります。<br>
+    変数の型を入力することで、<b>「①の型を使って、変数の配列を作ります」</b>という形になります。</p>
+    <h5>②</h5>
+    <p>ここには変数の名前が入ります。<br>
+    お好みの名前でどうぞ。</p>
+    <h5>③</h5>
+    <p>ここには配列の長さが入ります。<br>
+    配列とは、<b>「似たような変数の羅列」</b>なので、どのくらいその変数があるかによって数値が変わります。</p>
+    <h1>sizeof</h1>
+    おまけに、配列や今後に出てくる構造体（今は無視）などの大きさをはかる、[sizeof]について説明します。
+    <h3>入力方法</h3>
+    <p>sizeofは<code><span class="brown">sizeof</span> ①</code>と入力します。</p>
+    <h5>①</h5>
+    <p>①は配列や構造体の名前が入ります。<br>
+    そうすることで、どのくらいのメモリを食っているのかがわかります。</p>
+    <h3>気を付けた方がいいこと</h3>
+    <p>sizeofは<b>演算</b>の形なので、関数のような()は、要りません。<br>
+    さらに、型が<b>long unsigned int</b>で帰ってくるので、printfの際には<b>%ld</b>を使う必要があります。</p>
+
+    <h1>今までの説明を分かりやすくするサンプルコード</h1>
+    <div class="code_box">
+        <label>SAMPLE CODE [array_test.c]</label>
+        <button type="button" onclick="copy1()">copy</button>
+<pre><code id="code1"><span class="purple">#include</span><span class="red">&lt;stdio.h&gt;</span>
+
+<span class="bule">/**********************************************
+    array,sizeof 説明用サンプルコード            
+    作成者:換気扇  
+    推奨ファイル名: array_test.c         
+**********************************************/</span>
+
+<span class="green">int</span> main(<span class="green">void</span>){
+        <span class="bule">//変数宣言</span>
+        <span class="green">int</span> a[<span class="red">8</span>];
+        <span class="green">short int</span> b[<span class="red">8</span>]={<span class="red">200</span>};
+        <span class="green">int</span> i;
+
+        <span class="bule">//sizeofの使用</span>
+        printf(<span class="red">"[info]sizeofの使用<span class="purple">\n</span>array a[8] => size <span class="purple">%ld\n</span>"</span>,<span class="brown">sizeof</span> a);
+        printf(<span class="red">"array b[8] => size <span class="purple">%ld\n\n</span>"</span>,<span class="brown">sizeof</span> b);
+        <span class="bule">//sizeofの有効的な使い方</span>
+        printf(<span class="red">"[info]sizeofの有効的な使用<span class="purple">\n</span>array a[8] => length <span class="purple">%ld\n</span>"</span>,<span class="brown">sizeof</span> a/<span class="brown">sizeof</span> a[<span class="red">0</span>]);
+        printf(<span class="red">"array b[8] => length <span class="purple">%ld\n\n</span>"</span>,<span class="brown">sizeof</span> b/<span class="brown">sizeof</span> b[<span class="red">0</span>]);
+       
+        <span class="bule">//arrayの使用（そして、for文との相互関係）</span>
+        <span class="brown">for</span>(i=<span class="red">0</span>;i&lt;(<span class="brown">sizeof</span> a/<span class="brown">sizeof</span> a[<span class="red">0</span>]);i++){
+            printf(<span class="red">"配列aの<span class="purple">%d</span>番目に入る数字を入力<span class="purple">\n</span>&gt;"</span>,i);
+            scanf(<span class="red">"<span class="purple">%d</span>"</span>,&a[i]);
+        }
+
+        <span class="bule">//arrayの中身を表示する</span>
+        printf(<span class="red">"<span class="purple">\n\n</span>配列aの中身={ </span>");
+        <span class="brown">for</span>(i=<span class="red">0</span>;i&lt;(<span class="brown">sizeof</span> a/<span class="brown">sizeof</span> a[<span class="red">0</span>]);i++){
+            printf(<span class="red">"<span class="purple">%d</span> "</span>,a[i]);
+        }
+        printf(<span class="red">"}<span class="purple">\n\n\n</span>"</span>);
+
+        <span class="brown">return <span class="red">0</span></span>;
+}
+</code></pre>
+    </div>
+    <h3>サンプルコード徹底解説</h3>
+    <p>ここでは、サンプルコードで果たして何をしていたのかを表します。</p>
+    <h5>1,<code><span class="purple">#include</span></code> ... <code>(<span class="green">void</span>){</code>～定型文～</h5>
+    <p>ザ・定型文です。<br>今のうちは、「始めの合図」だと思ってください。</p>
+    <h5>2,<code> <span class="green">int</span> a[<span class="red">8</span>];</code> ... <code><span class="green">int</span> i;</code>～変数宣言～</h5>
+    <p>いつもの変数宣言です。<br>
+    下に変数の説明を記入します</p>
+    <ul>
+        <li><u>[a]</u>...整数値で配列の長さが8の変数です。この後適当な数字が入力されます。</li>
+        <li><u>[b]</u>...整数値（shortバージョン）で配列の長さが8の変数です。</li>
+        <li><u>[i]</u>...for文で使用する繰り返し用の変数です。</li>
+    </ul>
+    <h5>3,<code>printf(<span class="red">"[info]sizeofの使用</span></code> ... <code>,<span class="brown">sizeof</span> b);</code>～sizeofの仕様確認～</h5>
+    <p>sizeofを、単純に使用した例です。<br>
+    実行するとわかるのですが、<b>sizeofはその変数のメモリ量</b>を表すだけで、配列の数を表す関数では無いです。<br>
+    よって、次の「4,」のような処理が必要になってきます。</p>
+    <h5>4,<code>printf(<span class="red">"[info]sizeofの有効的な使用</span></code> ... <code>,<span class="brown">sizeof</span> b);</code>～配列の長さ取得～</h5>
+    <p>sizeofを、配列に生かした例です。<br>
+    こうすることで、<b>「配列全体のデータ量」÷「配列一つのデータ量」</b>と処理して、配列の長さが求められます。</p>
+    <h5>5,<code><span class="brown">for</span>(i=<span class="red">0</span>;i&lt;(<span class="brown">sizeof</span> a/<span class="brown">sizeof</span> a[<span class="red">0</span>]);i++){</code> ... <code>(<span class="red">"}<span class="purple">\n\n\n</span>"</span>);</code>～配列とforの関係～</h5>
+    <p>forから配列にアクセスした場合です。<br>
+    「4,」で使用した長さの取得により、forを配列の末尾まで繰り返します。<br>
+    見ての通り<b>forと配列には切っても切り離せない関係</b>にあります。</p>
+    <h5>6,<code><span class="brown">retu</span></code> ... <code>}</code>～定型文～</h5>
+    <p>「1,」の内容が始めの合図だとすると、こっちは「終わりの合図」です。<br>
+    「1,」と「6,」が何なのかは追々分かります。</p>
+    <h1>オマケ[配列でよくあるエラー]</h1>
+    <h3>1.配列を1から指定</h3>
+    <p>配列は<b>0</b>から始まるため、1から指定してしまうとエラーを起こします。</p>
+</body>
+</html>

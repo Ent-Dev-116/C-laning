@@ -7,7 +7,7 @@ async function setting() {
     const data = await response.json();
 
     const HTML = document.getElementById('qas');
-    for (var i = 0; i < data.length; i++) {
+    for (var i = data.length-1; i >= 0; i--) {
         if (data[i][2] != "") {
             contentNode = document.createRange().createContextualFragment(`<div style="margin:5px;border-radius: 10px;background-color:white;margin-left:10px;width:800px;padding: 5px;">
         <h4>`+ data[i][1] + ` 様のコメント</h4>

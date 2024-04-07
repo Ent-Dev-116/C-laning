@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <link rel="stylesheet" href="inte.css"><link rel="stylesheet" href="../code.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <!--()は取り上げるネタ
+        []はヘッダファイルの名前
+    -->
+    <script src="../click_copy.js"></script>
+
+    <h1>rand</h1>
+    <h3>randの入力の仕方</h3>
+    <p>randは<code>rand();</code>のような入力法になります。<br>
+    これだけで、ランダムな値の数を返却します。<br>
+    「それだけ？」と思った方、それだけです。<br>
+    気を付けなくてはならないのが、<b>&lt;stdlib.h&gt;</b>をincludeしなくてはならない事です。</p>
+    <h3>randの知るべき特性</h3>
+    <p>randは、まさかの<b>乱数っぽい何か</b>なんです。<br>
+    randは<b>プログラム一つにつき同じ数を出力します</b>。<br>
+    分かりづらい、説明しずらいので図解します。</p>
+    <img src="./2.png">
+    <p>上記の図がrandへのイメージです。<br>
+    randは植物のようなもで、種があって初めてランダムに値を出せます。<br>
+    しかし、PC上にもともと用意されている種は<b>ずっと同じ種になっています</b>。<br>
+    なので、実行した際にデフォルトのPC上の種からrandを生成してしまい、同じ値の羅列になります。<br>
+    意味ないと思った方、安心してください。<b>srand</b>というrandとワンセットの関数があります。</p>
+    <h3>種の種類を変えよう</h3>
+    <p>今までは、<b>randをそのまま使うとPCのデフォルトの種を使うため、何度実行してもダメ</b>という話をしました。<br>
+    なので、これでゲームを作ると<b>1回目と2回目で一切乱数が変わらないゲーム</b>が完成します。<br>
+    それを防ぐため、<b>srand</b>を使用します。</p>
+    <img src="./3.png">
+    <p>srandは、最初の種のイラストの事です。<br>
+    srandは<code>srand(「unsigned int型の変数」);</code>で使用できます。<br>
+    これをすることで、いつも同じ種をまいて生成していたrandが違う種を使うようになります。<br>
+    …そして、残念なお知らせです。今回、もう一つ学ばなければならない関数があります。</p>
+    <h6>あと一つだけです。あと一つ学べば、乱数生成が出来ますので。</h6>
+    <h3>種の値を変更し続けなければいけない</h3>
+    <p>srandはあくまでも<b>種を製作する</b>関数です。<b>種を変え続ける</b>関数ではありません。<br>
+    なので、<b>プログラムを実行するたび、違う値で種を作る</b>必要があります。<br>
+    その時に使うのが<b>time()</b>です。
+    時間は変わり続けるので、時間の値で種を作れば、時間を逆行しない限り毎秒違う種が作れるという理論です。<br>
+    timeは<code>time(「時間を返却したい変数」);</code>と入力すると使えます。こちらも、<code><span class="red">&lt;time.h&gt;</span></code><br>
+    「時間を返却したい変数」とは、変数名を入れるとそこにも現在時刻が入るという事です。<br>
+    基本的には、<code>time(<span class="red">NULL</span>)</code>で使用するケースが多いです。</p>
+    <h6>NULLってすると、「変数はないよ」ってイメージでOK。</h6>
+
+    <h1>今までの説明を分かりやすくするサンプルコード</h1>
+    <div class="code_box">
+        <label>SAMPLE CODE [rand_test.c]</label>
+        <button type="button" onclick="copy1()">copy</button>
+<pre><code id="code1"><span class="purple">#include</span><span class="red">&lt;stdio.h&gt;</span>
+
+<span class="bule">//この下二つが必須です。</span>
+<span class="purple">#include</span><span class="red">&lt;stdlib.h&gt;</span>
+<span class="purple">#include</span><span class="red">&lt;time.h&gt;</span>
+
+<span class="bule">/**********************************************
+    rand,srand 説明用サンプルコード            
+    作成者:換気扇  
+    推奨ファイル名: rand_test.c         
+**********************************************/</span>
+
+<span class="green">int</span> main(<span class="green">void</span>){
+        <span class="bule">//変数宣言</span>
+        <span class="green">int</span> lack;
+        <span class="green">unsigned int</span> seed;
+
+        <span class="bule">//PC上のseedチェック</span>
+        printf(<span class="red">"ここでは、PCのデフォルトのseedでrandを出力します。<span class="purple">\n</span>%d<span class="purple">\n\n</span>"</span>,rand());
+
+        <span class="bule">//seedを選んで出力</span>
+        printf(<span class="red">"seedの値を入力してください<span class="purple">\n</span>&gt;"</span>);
+        scanf(<span class="red">"<span class="purple">%d</span>"</span>,&seed);
+        <span class="bule">//seedを選んだrandの結果</span>
+        srand(seed);
+        printf(<span class="red">"<span class="purple">\n</span>ここでは、%dのseedでrandを出力します。<span class="purple">\n</span>%d<span class="purple">\n\n</span>"</span>,seed,rand());
+        
+        <span class="bule">//timeでseedを設定して、毎秒違う乱数を出力</span>
+        srand((<span class="green">unsigned int</span>)time(<span class="red">NULL</span>));
+        printf(<span class="red">"ここでは、timeの値でrandを出力します。<span class="purple">\n</span>%d<span class="purple">\n\n</span>"</span>,rand());
+
+        <span class="bule">//timeでseedで決めたので、今後はsrandせずとも大丈夫です。</span>
+        
+        <span class="bule">//randの値を任意の範囲で入手する</span>
+        lack=rand()%10+1;
+        printf(<span class="red">"1~10で、あなたのラッキーナンバーは[<span class="purple">%d</span>]です。<span class="purple">\n</span>"</span>,lack);
+
+        <span class="brown">return <span class="red">0</span></span>;
+}
+</code></pre>
+    </div>
+    <h3>サンプルコード徹底解説</h3>
+    <p>ここでは、サンプルコードで果たして何をしていたのかを表します。</p>
+    <h5>1,<code><span class="purple">#include</span></code> ... <code>(<span class="green">void</span>){</code>～定型文～</h5>
+    <p>ザ・定型文です。<br>今のうちは、「始めの合図」だと思ってください。</p>
+    <h5>2,<code><span class="green">int</span></code> ... <code>seed;</code>～変数宣言～</h5>
+    <p>変数宣言です。変数は</p>
+    <ul>
+        <li><u>[lack]</u>...int型でrandから1~10までの乱数を受け取ります。</li>
+        <li><u>[seed]</u>...unsigned int型で、seedという種の値を入力して決めます。</li>
+    </ul>
+    <p>という形です。<br>
+    実は、いままで話してきた「種の値」というのは、ゲーム関連に触れている人ならわかる「シード値」といい、種は「シード」といいます。</p>
+    <h5>3,<code>printf(<span class="red">"ここでは、PCの</span></code> ... <code>,rand());</code>～PCのseed～</h5>
+    <p>randで、PCの初期値として入っているシード値を得て、それでrandを作動させます。<br>
+    ここの値は、何度実行しても変わりません。</p>
+    <h5>4,<code>printf(<span class="red">"seedの値を</span></code> ... <code>,rand());</code>～入力のseed～</h5>
+    <p>scanfで、ユーザーの任意のシード値を得て、それでrandを作動させます。<br>
+    ここの値は、同じ値を入力すると変わりません。</p>
+    <h5>5,<code>srand((<span class="green">unsigned int</span>)time(<span class="red">NULL</span>))</code> ... <code><span class="bule">srandせずとも大丈夫です。</span></code>～timeのseedとその理解～</h5>
+    <p>timeの値でrandを作動させます。<br>
+    ここの値は毎秒違うシードを設定するため、この後作動させるrandはちゃんと乱数を取ります。<br>
+    seedを変えなくていいのは、seedを一回生成してしまえば、そのあとのrandは全く別の配列になるからです。</p>
+    <h5>6,<code>lack=rand()%10+1;</code> ... <code><span class="red">バーは[<span class="purple">%d</span>]です。<span class="purple">\n</span>"</span>,lack);</code>～randから任意の値を取る～</h5>
+    <p>randから出てくる長い数値を、最大値と最小値を決めて、その範囲で出力するようなプログラムの説明です。<br>
+    最大値が<code>%10</code>の10で、最小値が<code>+1</code>の1です。<br>
+    これを設定すると、「1~10の範囲の乱数を取る」という意味になります。</p>
+    <h5>7,<code><span class="brown">retu</span></code> ... <code>}</code>～定型文～</h5>
+    <p>「1,」の内容が始めの合図だとすると、こっちは「終わりの合図」です。<br>
+    「1,」と「7,」が何なのかは追々分かります。</p>
+    <h1>オマケ[rand,srand,timeでよくあるエラー三選]</h1>
+    <h3>1.srandし忘れ</h3>
+    <p>srandをし忘れると、シードがPCの値固定になってしまうので、どれだけやっても同じ値しか出ないゲームの完成です。<br>
+    ちゃんとrandを使うときは[srand((unsigned)time(NULL))]をしましょう。</p>
+    <h3>2.timeのNULL忘れ</h3>
+    <p>timeのNULLには、本来変数が入ってくるはずです。<br>
+    しかし、NULLが数値であったり存在しない変数であると、「変数がないよ」とエラーが出てきます。</p>
+    <h3>3.rand()の()に数値を入れた</h3>
+    <p>rand()の()には何も入れてはいけません。少し詳しい部分に触れるなら「voidで関数が設定されているから」となります。<br>
+    あまりこのミスはないと思います。</p>
+    <h1>オマケ[今回の配布ヘッダファイル]</h1>
+    <div class="code_box">
+    <label>SAMPLE CODE [rand_set.h]</label>
+    <button type="button" onclick="copyTo()">copy</button>
+<pre><code id="code"><span class="purple">#include</span><span class="red">&lt;stdio.h&gt;</span>
+<span class="purple">#include</span><span class="red">&lt;stdlib.h&gt;</span>
+<span class="purple">#include</span><span class="red">&lt;time.h&gt;</span>
+<!--ここにコードが入ってくる-->
+
+<span class="green">int</span> bet_r(<span class="green">int</span> min,<span class="green">int</span> max);
+<span class="green">int</span> dice(<span class="green">void</span>);
+<span class="green">void</span> SR(<span class="green">void</span>);
+
+<span class="green">int</span> bet_r(<span class="green">int</span> min,<span class="green">int</span> max){
+    <span class="brown">return</span> rand()%max+min;
+}
+
+<span class="green">int</span> dice(<span class="green">void</span>){
+    <span class="brown">return</span> rand()%6+1;
+}
+
+<span class="green">void</span> sr(<span class="green">void</span>){
+    srand((<span class="green">unsigned</span>)time(<span class="red">NULL</span>));
+}
+
+</code>
+</pre>
+    </div>
+    <h5>使い方</h5>
+    <p>初の試みで、今回は三つの関数を作ってみました。<br>
+    要るかどうかと聞かれれば、要りません。趣味です。</p>
+    <h3>1,<code><span class="green">int</span> bet_r(<span class="green">int</span> min,<span class="green">int</span> max);</code></h3>
+    <h5>使い方</h5>
+    <p><code><span class="red">「int型の変数」</span>=bet_r(<span class="red">「最小値」</span>,<span class="red">「最大値」</span>);</code><br>
+    で使用できます。<br>
+    乱数を「最大値」から「最小値」の間で生成する便利な機能です。</p>
+    <h3>2,<code><span class="green">int</span> dice(<span class="green">void</span>);</code></h3>
+    <h5>使い方</h5>
+    <p><span class="red">「int型の変数」</span>= dice();<br>
+    で使用できます。<br>
+    6面ダイスを振ることができます。</p>
+    <h3>3,<code><span class="green">void</span> sr(<span class="green">void</span>);</code></h3>
+    <p>SetRandomの略で、シード地の再設定に使えます。<br>
+    結局は<code>srand((<span class="green">unsigned</span>)time(<span class="red">NULL</span>))</code>と変わりません。</p>
+    <br>
+    <h1>参考資料</h1>
+    <ul>
+        <li>SAMURAI ENGINEER||<a href="https://www.sejuku.net/blog/25352" target="_blank">【C言語入門】乱数(rand)の使い方</a></li>
+        <li>BohYoh.com||<a href="" target="_blank">Ｃ言語 標準ライブラリ srand</a></li>
+        <li>モノづくりC言語塾||<a href="https://monozukuri-c.com/langc-funclist-rand/#google_vignette" target="_blank">C言語 乱数の生成【randとsrandを使ったサンプルコード】</a></li>
+    </ul>
+</body>
+</html>

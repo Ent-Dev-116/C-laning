@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <link rel="stylesheet" href="inte.css"><link rel="stylesheet" href="../code.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <!--()は取り上げるネタ
+        []はヘッダファイルの名前
+    -->
+    <script src="../click_copy.js"></script>
+
+    <h1>for</h1>
+    <h3>forの入力の仕方</h3>
+    <p>forは<code>for(（　①　）;（　②　）;（　③　）){（　④　）};</code>のような入力法になります。</p>
+    <h5>①</h5>
+    <p><b>最初に実行される関数</b>をここに記述します。<br>
+    よく使うのは[i=0]で、こうすると<b>最初にこの後使う変数を初期化</b>できます。<br>
+    それ以外にも「最初に実行される関数」なので、色々悪さできますが…最後のおまけに書きます。</p>
+    <h5>②</h5>
+    <p><b>継続条件</b>をここに記述します。<br>
+    whileでも言ったように、<b>継続条件</b>なので、その条件が満たされている間続けます。<br>
+    間違えないように。</p>
+    <h5>③</h5>
+    <p><b>終了処理</b>をここに記述します。<br>
+    終了処理というのは、最後に終わった時に実行される関数の事です。</p>
+    <h5>④</h5>
+    <p><b>処理</b>をここに記述します。<br>
+    whileの{}の中身と同じです。基本的に<b>中括弧の中身は条件が満たされている時実行される処理を書く</b>認識で大丈夫です。</p>
+    
+    <h1>今までの説明を分かりやすくするサンプルコード</h1>
+    <div class="code_box">
+        <label>SAMPLE CODE [for_sanp.c]</label>
+        <button type="button" onclick="copy1()">copy</button>
+<pre><code id="code1"><span class="purple">#include</span><span class="red">&lt;stdio.h&gt;</span>
+
+<span class="bule">/**********************************************
+    for 説明用サンプルコード            
+    作成者:換気扇  
+    推奨ファイル名: for_sanp.c        
+**********************************************/</span>
+
+<span class="green">int</span> main(<span class="green">void</span>){
+<!--ここにコードが入ってくる-->
+        <span class="green">int</span> i,rop;
+
+        printf(<span class="red">"繰り返す回数を入力してください。<span class="purple">\n</span>->"</span>);
+        scanf(<span class="red">"<span class="purple">%d</span>"</span>,&rop);
+
+        <span class="bule">//ループの処理確認（表示回数0からはわざと）</span>
+        <span class="brown">for</span>(i=<span class="red">0</span>;i&lt;rop;i++){
+            printf(<span class="red">"<span class="purple">\n</span>これは、<span class="purple">%d</span>回表示されます（現在[<span class="purple">%d</span>]回目）"</span>,rop,i);
+        }
+
+        printf(<span class="red">"<span class="purple">\n</span>"</span>);
+
+        printf(<span class="red">"<span class="purple">\n\n</span>---whileで再現---<span class="purple">\n</span>"</span>);
+        <span class="bule">//whileで無理やりforを作ろう</span>
+        <span class="bule">//初期化処理</span>
+        i=<span class="red">0</span>;
+        <span class="bule">//ループ処理,継続条件</span>
+        <span class="brown">while</span>(i&lt;rop){
+            printf(<span class="red">"<span class="purple">\n</span>これは、<span class="purple">%d</span>回表示されます（現在[<span class="purple">%d</span>]回目）"</span>,rop,i);
+
+            <span class="bule">//終了処理</span>
+            i++;
+        }
+
+        printf(<span class="red">"<span class="purple">\n</span>"</span>);
+
+        <span class="brown">return <span class="red">0</span></span>;
+}
+</code></pre>
+    </div>
+    <h3>サンプルコード徹底解説</h3>
+    <p>ここでは、サンプルコードで果たして何をしていたのかを表します。</p>
+    <h5>1,<code><span class="purple">#include</span></code> ... <code>(<span class="green">void</span>){</code>～定型文～</h5>
+    <p>ザ・定型文です。<br>今のうちは、「始めの合図」だと思ってください。</p>
+    <h5>2,<code><span class="green">int</span> rop,i;</code> ... <code><span class="red">"<span class="purple">%d</span>"</span>,&rop);</code>～入力処理～</h5>
+    <p>いつもの変数宣言と入力。変数とその役割は下記の通り。</p>
+    <ul>
+        <li><u>[i]</u>...for文の回数指定ループによく使うアルファベット一文字。今回もそれに使用。</li>
+        <li><u>[rop]</u>...ループ回数の指定数を格納する変数。roopの略。</li>
+    </ul>
+    <h5>3,<code><span class="brown">for</span>(i=<span class="red">0</span>;i&lt;rop;i++){</code> ... <code>}</code>～for文の確認～</h5>
+    <p>ループの動作を確認しています。<br>
+    初期化処理は<b>[i=0]</b>でカウントを0にし、<br>
+    条件は<b>[i&lt;rop]</b>で指定したループ回数より小さい回数繰り返し、<br>
+    終了処理で<b>[i++]</b>をすることでカウントを1ずつ上昇させます。
+    </p>
+    <h5>4,<code>i=<span class="red">0</span>;</code> ... <code>}</code>～whileでfor再現～</h5>
+    <p>whileで無理やりfor文を再現した形です。<br>
+    ほぼ確実に使いませんが、一応whileのこの処理がforで短縮できるという説明のために記述しました。</p>
+    <h5>5,<code><span class="brown">retu</span></code> ... <code>}</code>～定型文～</h5>
+    <p>「1,」の内容が始めの合図だとすると、こっちは「終わりの合図」です。<br>
+    「1,」と「5,」が何なのかは追々分かります。</p>
+    <h1>オマケ[forでよくあるエラー]</h1>
+    <h3>セミコロン抜け</h3>
+    <p>whileとは違い、()の中にはセミコロンが二つ必要になるので、これを忘れてエラーになりがちです。</p>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <link rel="stylesheet" href="inte.css"><link rel="stylesheet" href="../code.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <!--()は取り上げるネタ
+        []はヘッダファイルの名前
+    -->
+    <script src="../click_copy.js"></script>
+
+    <h1>define</h1>
+    <h3>defineの入力の仕方</h3>
+    <p>defineは<code><span class="purple">#define ①</span> <span class="red">②</span></code>のような入力法になります。<br>
+    また、この文章は#includeと同じで、外に書かなければいけません。</p>
+    <h5>①</h5>
+    <p>①には変数名のようなものが入ります。ここは、<b>一般的に大文字で書く</b>ようになっています。</p>
+    <h5>②</h5>
+    <p>②には変数の中に入る値が入ります。<br>
+    しかし、気を付けなければならないのが、<b>変数のように後で書き換えることはできない</b>ということです。<br>
+    つまり、<b>今後は「①」を「②」という値に置き換えます</b>という意味になります。</p>
+    
+    <h1>今までの説明を分かりやすくするサンプルコード</h1>
+    <div class="code_box">
+        <label>SAMPLE CODE [define_test.c]</label>
+        <button type="button" onclick="copy1()">copy</button>
+<pre><code id="code1"><span class="purple">#include</span><span class="red">&lt;stdio.h&gt;</span>
+
+<span class="bule">/**********************************************
+    define 説明用サンプルコード            
+    作成者:換気扇  
+    推奨ファイル名: define_test.c          
+**********************************************/</span>
+
+<span class="bule">//defineを使用する。これは九九の大きさの指定 最大値は999</span>
+<span class="purple">#define LENG</span> <span class="red">9</span>
+
+<span class="green">int</span> main(<span class="green">void</span>){
+        <span class="bule">//変数宣言</span>
+        <span class="green">int </span>i,j;
+
+        <span class="bule">//何の出力かわかるような装飾</span>
+        printf(<span class="red">"---|--掛け算の表----"</span>);
+        <span class="brown">for</span>(i=<span class="red">0</span>;i&lt;LENG-<span class="red">4</span>;i++){
+            printf(<span class="red">"----"</span>);
+        }
+        printf(<span class="red">"<span class="purple">\n</span>   |<span class="purple">\n</span>"</span>);
+
+        <span class="bule">//九九の票を出力</span>
+        <span class="brown">for</span>(i=<span class="red">1</span>;i&lt;=LENG;i++){
+            printf(<span class="red">"<span class="purple">%3d</span>|"</span>,i);
+            <span class="brown">for</span>(j=<span class="red">1</span>;j&lt;=LENG;j++){
+                printf(<span class="red">"<span class="purple">%4d</span>"</span>,i*j);
+            }
+            printf(<span class="red">"<span class="purple">\n</span>"</span>);
+        }
+        printf(<span class="red">"   |<span class="purple">\n</span>"</span>);
+
+<!--ここにコードが入ってくる-->
+        <span class="brown">return <span class="red">0</span></span>;
+}
+</code></pre>
+    </div>
+    <h3>サンプルコード徹底解説</h3>
+    <p>ここでは、サンプルコードで果たして何をしていたのかを表します。</p>
+    <h5>1,<code><span class="purple">#include</span></code> ... <code>(<span class="green">void</span>){</code>～定型文～</h5>
+    <p>ザ・定型文です。<br>今のうちは、「始めの合図」だと思ってください。</p>
+    <h5>2,<code><span class="purple">#define LENG</span> <span class="red">9</span></code>～defineの確認～</h5>
+    <p>defineの使い方の確認です。これにより、今後の「LENG」は「9」になります。<br>
+    こうすることで、今後「9」を「99」にするだけで「九九の表」を「九九九九の表」にすることができます。</p>
+    <h5>3,<code><span class="green">int </span>i,j;</code> ... <code>printf(<span class="red">"   |<span class="purple">\n</span>"</span>);</code>～考えてみよう～</h5>
+    <p>説明を記述するのもいいかな…と思いましたが、ほぼ全て今まで解説してきた中級編の物なので、何が起きてるかを考えてみましょう。<br>
+    面倒になったわけではありません。決して。</p>
+    <h5>4,<code><span class="brown">retu</span></code> ... <code>}</code>～定型文～</h5>
+    <p>「1,」の内容が始めの合図だとすると、こっちは「終わりの合図」です。<br>
+    「1,」と「4,」が何なのかは追々分かります。</p>
+</body>
+</html>
